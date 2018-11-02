@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LOTR web game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Lord of the Rings Web Game</h1>
+    </header>
+
+    <section>
+        <div class="menu">
+            <h2>Choose a character</h2>
+            <div class="characters">
+                <div class="character" onclick="GameManager.chooseCharacter(frodo)">
+                    <h4>Frodo</h4>
+                    <span class="stats">
+                        <img src="./characters/frodo.png" alt="Frodo">
+                        <span class="frodo-stats"></span>
+                    </span>
+                </div>
+                <div class="character" onclick="GameManager.chooseCharacter(sam)">
+                    <h4>Sam</h4>
+                    <span class="stats">
+                        <img src="./characters/sam.png" alt="Sam">
+                        <span class="sam-stats"></span>
+                    </span>
+                </div>
+                <div class="character" onclick="GameManager.chooseCharacter(legolas)">
+                    <h4>Legolas</h4>
+                    <span class="stats">
+                        <img src="./characters/legolas.png" alt="Legolas">
+                        <span class="legolas-stats"></span>
+                    </span>
+                </div>
+                <div class="character" onclick="GameManager.chooseCharacter(aragorn)">
+                    <h4>Aragorn</h4>
+                    <span class="stats">
+                        <img src="./characters/aragorn.png" alt="Aragorn">
+                        <span class="aragorn-stats"></span>
+                    </span>
+                </div>
+                <div class="character" onclick="GameManager.chooseCharacter(gimli)">
+                    <h4>Gimli</h4>
+                    <span class="stats">
+                        <img src="./characters/gimli.png" alt="Gimli">
+                        <span class="gimli-stats"></span>
+                    </span>
+                </div>
+                <div class="character" onclick="GameManager.chooseCharacter(gandalf)">
+                    <h4>Gandalf</h4>
+                    <span class="stats">
+                        <img src="./characters/gandalf.png" alt="Gandalf">
+                        <span class="gandalf-stats"></span>
+                    </span>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="difficulty">
+            <button onclick="GameManager.chooseDifficulty('easy')">Easy</button>
+            <button onclick="GameManager.chooseDifficulty('medium')">Medium</button>
+            <button onclick="GameManager.chooseDifficulty('hard')">Hard</button>
+        </div>
+
+        <div class="arena">
+            <div class="player"></div>
+            <div class="attack">
+                <button onclick="characterAttack()">Attack</button>
+            </div>
+            <div class="player-info">
+                <span class="player-info-skill1"></span>
+                <span class="player-info-skill2"></span>
+                <span class="player-info-attack"></span>
+                <span class="opponent-info-attack"></span>
+                
+            </div>
+            <div class="battlefield">
+                
+            </div>
+            <div class="opponent"></div>
+        </div>
+        
+        <div class="result">
+            
+        </div>
+    </section>
+    <script src="./js/gameManager.js"></script>
+    <script src="./js/character.js"></script>
+    <script src="./js/enemy.js"></script>
+    <script src="./js/variables.js"></script>
+</body>
+</html>
