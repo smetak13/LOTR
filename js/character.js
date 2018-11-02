@@ -79,7 +79,7 @@ const gandalf = new Character('Gandalf', 'some info', 270, 2720, 12,
         },
         skill2: {
             name: 'You Shall Not Pass',
-            description: 'There is a 40% chance to limit the attack by your enemy to 170 damage. The chance is 60% against Balrog.'
+            description: 'There is a 50% chance to limit the attack by your enemy to 170 damage. The chance is 60% against Balrog.'
         },
 });
 
@@ -161,7 +161,7 @@ function characterAttack() {
     if (activeEnemy.health <= 0) {
         activeEnemy.health = 0;
         result.innerHTML = '<p>You win in ' + round + ' rounds</p>';
-        return GameManager.selectContent(result);
+        return gameManager.selectContent(result);
     }
 
     

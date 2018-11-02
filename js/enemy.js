@@ -45,7 +45,7 @@ function enemyAttack() {
                 basicDamage = 170;
             }
         } else {
-            if (getRandomNumber(1, 10) <= 4) {
+            if (getRandomNumber(1, 10) <= 5) {
                 basicDamage = 170;
             }
         }
@@ -85,7 +85,7 @@ function enemyAttack() {
         }
             activeCharacter.health = 0;
             result.innerHTML = '<p>You lose in ' + round + ' rounds</p>'
-            GameManager.selectContent(result);
+            gameManager.selectContent(result);
     }
 
 }

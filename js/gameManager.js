@@ -3,7 +3,7 @@ function getRandomNumber(start, range) {
     return Math.round((Math.random() * (range-start)) + start);
 }
 
-const GameManager = {
+const gameManager = {
 
     chooseCharacter(character) {
         activeCharacter = character;
@@ -13,18 +13,17 @@ const GameManager = {
     },
 
     chooseDifficulty(difficulty) {
-        chosenDifficulty = difficulty;
-        this.chooseEnemy()
+        this.chooseEnemy(difficulty)
     },
 
-    chooseEnemy() {
-        if (chosenDifficulty === 'easy') {
+    chooseEnemy(difficulty) {
+        if (difficulty === 'easy') {
             activeEnemy = easyEnemies[getRandomNumber(0, easyEnemies.length)];
         }
-        if (chosenDifficulty === 'medium') {
+        if (difficulty === 'medium') {
             activeEnemy = mediumEnemies[getRandomNumber(0, mediumEnemies.length)];
         }
-        if (chosenDifficulty === 'hard') {
+        if (difficulty === 'hard') {
             activeEnemy = hardEnemies[getRandomNumber(0, hardEnemies.length)];
         }
 
