@@ -15,7 +15,7 @@ const frodo = new Character('Frodo', 'some info', 250, 2640, 20,
     {
         skill1: {
             name: 'The One Ring',
-            description: 'All the physical attacks towards this card will have a 50% chance to miss.'
+            description: 'All the physical attacks towards this card have a 50% chance to miss.'
         },
         skill2: {
             name: 'Mithril shirt',
