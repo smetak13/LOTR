@@ -65,7 +65,7 @@ function enemyAttack() {
             }
         }
             gameManager.activeCharacter.health = 0;
-            resultStats.innerHTML = '<p>You lose in ' + gameManager.round + ' rounds</p>'
+            resultStats.innerHTML = '<h4>You lose in ' + gameManager.round + ' rounds</h4>'
             gameManager.selectContent(result);
     }
 

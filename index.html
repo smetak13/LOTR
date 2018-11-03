@@ -14,45 +14,45 @@
 
     <section>
         <div class="menu">
-            <h2>Choose a character</h2>
+            <h2 class="center">Choose a character</h2>
             <div class="characters">
                 <div class="character" onclick="gameManager.chooseCharacter(frodo)">
-                    <h4>Frodo</h4>
+                    <h3>Frodo</h3>
                     <span class="stats">
                         <img src="./characters/frodo.png" alt="Frodo">
                         <span class="frodo-stats"></span>
                     </span>
                 </div>
                 <div class="character" onclick="gameManager.chooseCharacter(sam)">
-                    <h4>Sam</h4>
+                    <h3>Sam</h3>
                     <span class="stats">
                         <img src="./characters/sam.png" alt="Sam">
                         <span class="sam-stats"></span>
                     </span>
                 </div>
                 <div class="character" onclick="gameManager.chooseCharacter(legolas)">
-                    <h4>Legolas</h4>
+                    <h3>Legolas</h3>
                     <span class="stats">
                         <img src="./characters/legolas.png" alt="Legolas">
                         <span class="legolas-stats"></span>
                     </span>
                 </div>
                 <div class="character" onclick="gameManager.chooseCharacter(aragorn)">
-                    <h4>Aragorn</h4>
+                    <h3>Aragorn</h3>
                     <span class="stats">
                         <img src="./characters/aragorn.png" alt="Aragorn">
                         <span class="aragorn-stats"></span>
                     </span>
                 </div>
                 <div class="character" onclick="gameManager.chooseCharacter(gimli)">
-                    <h4>Gimli</h4>
+                    <h3>Gimli</h3>
                     <span class="stats">
                         <img src="./characters/gimli.png" alt="Gimli">
                         <span class="gimli-stats"></span>
                     </span>
                 </div>
                 <div class="character" onclick="gameManager.chooseCharacter(gandalf)">
-                    <h4>Gandalf</h4>
+                    <h3>Gandalf</h3>
                     <span class="stats">
                         <img src="./characters/gandalf.png" alt="Gandalf">
                         <span class="gandalf-stats"></span>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="difficulty">
-            <button onclick="gameManager.chooseDifficulty('easy')">Easy</button>
+            <button id="first-button" onclick="gameManager.chooseDifficulty('easy')">Easy</button>
             <button onclick="gameManager.chooseDifficulty('medium')">Medium</button>
             <button onclick="gameManager.chooseDifficulty('hard')">Hard</button>
         </div>
@@ -72,17 +72,16 @@
         <div class="arena">
             
             <div class="player"></div>
-            <div class="attack">
-                <button onclick="characterAttack()">Attack</button>
-            </div>
-            <div class="player-info">
-                <span class="player-info-skill"></span>
-                <span class="player-info-attack"></span>
-                <span class="opponent-info-attack"></span>
-                
-            </div>
             <div class="battlefield">
-                
+                <div class="attack">
+                    <button id="button-attack" onclick="characterAttack()">Attack</button>
+                </div>
+                <div class="player-info">
+                    <span class="player-info-skill"></span>
+                    <span class="player-info-attack"></span>
+                    <span class="opponent-info-attack"></span>
+                    
+                </div>
             </div>
             <div class="opponent"></div>
         
@@ -90,7 +89,7 @@
         
         <div class="result">
             <p class="result-stats"></p>
-            <button onclick="gameManager.newGame()">New Game</button>
+            <button id="new-game" onclick="gameManager.newGame()">New Game</button>
             
         </div>
     </section>
