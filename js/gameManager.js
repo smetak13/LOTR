@@ -74,4 +74,8 @@ const gameManager = {
         result.style.display = 'none';
         page.style.display = 'block';
     },
+
+    newGame() {
+        window.location = 'index.html';
+    }
 }
