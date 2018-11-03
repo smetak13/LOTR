@@ -86,57 +86,56 @@ const gandalf = new Character('Gandalf', 'some info', 270, 2720, 12,
 
 function characterAttack() {
 
-    round += 1
+    gameManager.round += 1
 
-    if (round===1) {
-        if ((activeEnemy.agility + getRandomNumber(1, 10)) > (activeCharacter.agility + getRandomNumber(1, 10))) {
+    if (gameManager.round===1) {
+        if ((gameManager.activeEnemy.agility + getRandomNumber(1, 10)) > (gameManager.activeCharacter.agility + getRandomNumber(1, 10))) {
             return enemyAttack();
         }
     }
-
     
-    if (activeCharacter.skills.skill1.name==='Axe Fury') {
-        activeCharacter.attack *= 1.1;
-        activeCharacter.attack = Math.round(activeCharacter.attack);
-        player.innerHTML = '<h2> ' + activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + activeCharacter.attack + '</li><li><b>Health:</b> ' + activeCharacter.health + '</li><li><b>Agility:</b> ' + activeCharacter.agility + '</li><li> <b>' + activeCharacter.skills.skill1.name + ':</b> ' + activeCharacter.skills.skill1.description + '</li><li> <b>' + activeCharacter.skills.skill2.name + ':</b> ' + activeCharacter.skills.skill2.description + '</li></ul></div>';
+    if (gameManager.activeCharacter.skills.skill1.name==='Axe Fury') {
+        gameManager.activeCharacter.attack *= 1.1;
+        gameManager.activeCharacter.attack = Math.round(gameManager.activeCharacter.attack);
+        gameManager.player.innerHTML = '<h2> ' + gameManager.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + gameManager.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeCharacter.attack + '</li><li><b>Health:</b> ' + gameManager.activeCharacter.health + '</li><li><b>Agility:</b> ' + gameManager.activeCharacter.agility + '</li><li> <b>' + gameManager.activeCharacter.skills.skill1.name + ':</b> ' + gameManager.activeCharacter.skills.skill1.description + '</li><li> <b>' + gameManager.activeCharacter.skills.skill2.name + ':</b> ' + gameManager.activeCharacter.skills.skill2.description + '</li></ul></div>';
     }
 
-    let basicDamage = activeCharacter.attack;
+    let basicDamage = gameManager.activeCharacter.attack;
 
     let offsetDamage = getRandomNumber(20, 60);
     basicDamage += offsetDamage;
 
     let vulnerabilityDamage = 0;
 
-    if (activeEnemy.vulnerability===activeCharacter.name) {
+    if (gameManager.activeEnemy.vulnerability===gameManager.activeCharacter.name) {
         vulnerabilityDamage = getRandomNumber(50, 150);
     }
 
     basicDamage += vulnerabilityDamage;
 
-    switch (activeCharacter.skills.skill1.name) {
+    switch (gameManager.activeCharacter.skills.skill1.name) {
         case 'Iron Will':
-            if (round > 1) {
-                playerInfoSkill1.innerHTML = '<p></p>';
+            if (gameManager.round > 1) {
+                gameManager.playerInfoSkill.innerHTML = '<p></p>';
                 if (getRandomNumber(1, 10) <= 4) {
-                    regenerationCount = basicHealth - activeCharacter.health;
-                    if (regenerationCount > 150) {
-                        regenerationCount = 150;
+                    gameManager.regenerationCount = gameManager.basicHealth - gameManager.activeCharacter.health;
+                    if (gameManager.regenerationCount > 150) {
+                        gameManager.regenerationCount = 150;
                     }
-                    activeCharacter.health += 150;
-                    if (activeCharacter.health > basicHealth) {
-                        activeCharacter.health = basicHealth;
+                    gameManager.activeCharacter.health += 150;
+                    if (gameManager.activeCharacter.health > gameManager.basicHealth) {
+                        gameManager.activeCharacter.health = gameManager.basicHealth;
                     }
-                    player.innerHTML = '<h2> ' + activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + activeCharacter.attack + '</li><li><b>Health:</b> ' + activeCharacter.health + '</li><li><b>Agility:</b> ' + activeCharacter.agility + '</li><li> <b>' + activeCharacter.skills.skill1.name + ':</b> ' + activeCharacter.skills.skill1.description + '</li><li> <b>' + activeCharacter.skills.skill2.name + ':</b> ' + activeCharacter.skills.skill2.description + '</li></ul></div>';
-                    if (regenerationCount > 0) {
-                    playerInfoSkill1.innerHTML = '<p>You regenerated ' + regenerationCount + ' health.</p>';
+                    gameManager.player.innerHTML = '<h2> ' + gameManager.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + gameManager.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeCharacter.attack + '</li><li><b>Health:</b> ' + gameManager.activeCharacter.health + '</li><li><b>Agility:</b> ' + gameManager.activeCharacter.agility + '</li><li> <b>' + gameManager.activeCharacter.skills.skill1.name + ':</b> ' + gameManager.activeCharacter.skills.skill1.description + '</li><li> <b>' + gameManager.activeCharacter.skills.skill2.name + ':</b> ' + gameManager.activeCharacter.skills.skill2.description + '</li></ul></div>';
+                    if (gameManager.regenerationCount > 0) {
+                    gameManager.playerInfoSkill.innerHTML = '<p>You regenerated ' + gameManager.regenerationCount + ' health.</p>';
                     }
                 }
             }
         break;
         case 'Anduril Sword':
             if (getRandomNumber(1, 10) <= 5) {
-                basicDamage += activeEnemy.attack
+                basicDamage += gameManager.activeEnemy.attack
             }
         break; 
         case 'Arrow Fury':
@@ -152,49 +151,49 @@ function characterAttack() {
     
     }
 
-    activeEnemy.health -= basicDamage;
+    gameManager.activeEnemy.health -= basicDamage;
 
-    opponent.innerHTML = '<h2> ' + activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + activeEnemy.attack + '</li><li><b>Health:</b> ' + activeEnemy.health + '</li><li><b>Agility:</b> ' + activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + activeEnemy.vulnerability + '</li></ul></div>';
+    gameManager.opponent.innerHTML = '<h2> ' + gameManager.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + gameManager.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeEnemy.attack + '</li><li><b>Health:</b> ' + gameManager.activeEnemy.health + '</li><li><b>Agility:</b> ' + gameManager.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + gameManager.activeEnemy.vulnerability + '</li></ul></div>';
 
-    playerInfoAttack.innerHTML = '<p>You caused ' + basicDamage + ' damage to your opponent.</p>'
+    gameManager.playerInfoAttack.innerHTML = '<p>You caused ' + basicDamage + ' damage to your opponent.</p>'
 
-    if (activeEnemy.health <= 0) {
-        activeEnemy.health = 0;
-        result.innerHTML = '<p>You win in ' + round + ' rounds</p>';
+    if (gameManager.activeEnemy.health <= 0) {
+        gameManager.activeEnemy.health = 0;
+        result.innerHTML = '<p>You win in ' + gameManager.round + ' rounds</p>';
         return gameManager.selectContent(result);
     }
 
     
-    if (activeCharacter.skills.skill1.name==='The One Ring') {
+    if (gameManager.activeCharacter.skills.skill1.name==='The One Ring') {
         if (getRandomNumber(1, 10)<=5) {
-            opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
+            gameManager.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
             return;
         }
     }
 
-    switch (activeCharacter.skills.skill2.name) {
+    switch (gameManager.activeCharacter.skills.skill2.name) {
         case 'Light of Galadriel':
-            if (activeEnemy.name==='Shelob') {
+            if (gameManager.activeEnemy.name==='Shelob') {
                 if (getRandomNumber(1, 10)<=5) {
-                    opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
+                    gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
                     return;
                 }
             } else {
                 if (getRandomNumber(1, 10)<=4) {
-                    opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
+                    gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
                     return;
                 }
             }         
             break;
         case 'Lighter than the Wind':
             if (getRandomNumber(1, 20)<=5) {
-                opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
+                gameManager.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
                 return;
             }
             break;
         case 'Stunning':
             if (getRandomNumber(1, 10)<=3) {
-                opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
+                gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
                 return;
             }
             break;
