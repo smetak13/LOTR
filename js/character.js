@@ -159,7 +159,7 @@ function characterAttack() {
 
     if (gameManager.activeEnemy.health <= 0) {
         gameManager.activeEnemy.health = 0;
-        result.innerHTML = '<p>You win in ' + gameManager.round + ' rounds</p>';
+        resultStats.innerHTML = '<p>You win in ' + gameManager.round + ' rounds</p>';
         return gameManager.selectContent(result);
     }
 
