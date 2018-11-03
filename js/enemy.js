@@ -59,7 +59,7 @@ function enemyAttack() {
     
     if (activeCharacter.health <= 0) {
         if (activeCharacter.skills.skill2.name==='Mithril shirt') {
-            if (getRandomNumber(1, 10) <= 3) {
+            if (getRandomNumber(1, 10) <= 5) {
                 activeCharacter.health = 700;
                 player.innerHTML = '<h2> ' + activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + activeCharacter.attack + '</li><li><b>Health:</b> ' + activeCharacter.health + '</li><li><b>Agility:</b> ' + activeCharacter.agility + '</li><li> <b>' + activeCharacter.skills.skill1.name + ':</b> ' + activeCharacter.skills.skill1.description + '</li><li> <b>' + activeCharacter.skills.skill2.name + ':</b> ' + activeCharacter.skills.skill2.description + '</li></ul></div>';
                 opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + activeCharacter.health + ' health.</p>';

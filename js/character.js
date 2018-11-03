@@ -11,7 +11,7 @@ class Character {
 
 }
 
-const frodo = new Character('Frodo', 'some info', 250, 2640, 20,
+const frodo = new Character('Frodo', 'some info', 270, 2640, 20,
     {
         skill1: {
             name: 'The One Ring',
@@ -19,15 +19,15 @@ const frodo = new Character('Frodo', 'some info', 250, 2640, 20,
         },
         skill2: {
             name: 'Mithril shirt',
-            description: 'After the card dies, there is a 30% chance the card is ressurected and continues with 700 health.'
+            description: 'After the card dies, there is a 50% chance the card is ressurected and continues with 700 health.'
         },
 });
 
-const sam = new Character('Sam', 'some info', 270, 2800, 17, 
+const sam = new Character('Sam', 'some info', 280, 2800, 17, 
     {
         skill1: {
             name: 'Iron Will',
-            description: 'There is a 30% chance to regenerate 150 health.'
+            description: 'There is a 40% chance to regenerate 150 health.'
         },
         skill2: {
             name: 'Light of Galadriel',
@@ -118,7 +118,7 @@ function characterAttack() {
         case 'Iron Will':
             if (round > 1) {
                 playerInfoSkill1.innerHTML = '<p></p>';
-                if (getRandomNumber(1, 10) <= 3) {
+                if (getRandomNumber(1, 10) <= 4) {
                     regenerationCount = basicHealth - activeCharacter.health;
                     if (regenerationCount > 150) {
                         regenerationCount = 150;
