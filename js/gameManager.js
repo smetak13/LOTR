@@ -470,9 +470,6 @@ const gameManager = {
                 
                 
                 break;
-        
-            default:
-                break;
         }
 
         let offsetDamage = getRandomNumber(20, 60);
