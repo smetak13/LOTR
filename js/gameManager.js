@@ -115,7 +115,19 @@ const easyEnemies = [greatSpider, orc, warg, gollum];
 const mediumEnemies = [orcLeader, nazgul, shelob, troll, oliphant];
 const hardEnemies = [saruman, balrog, kingOfTheDead, sauron];
 
+class ManaSkill {
+    constructor(name, description) {
+        this.name = name;
+        this.description = description;
+    }
+}
 
+const regeneration = new ManaSkill('Regeneration', 'Regenerate 40% of your basic health.');
+const bloodsucker = new ManaSkill('Bloodsucker', 'Your basic attack is increased by 150% and your health is increased by 100% of the damage dealt to your opponent.');
+const craze = new ManaSkill('Craze', 'Your basic attack is increased by 300% for one round.');
+const reflection = new ManaSkill('Reflection', 'your basic attack is increased by 150% and your opponent´s attack is reflected back at him in the next round.');
+
+const manaSkills = [regeneration, bloodsucker, craze, reflection];
 
 function getRandomNumber(start, range) {
     return Math.round((Math.random() * (range-start)) + start);
@@ -129,12 +141,18 @@ const gameManager = {
     opponent: '',
     round: 0,
     basicHealth: '',
+    basicAttack: '',
     regenerationCount: '',
     playerInfoSkill: '',
     playerInfoAttack: '',
     opponentInfoAttack: '',
     manaInfo: '',
+    manaSkillInfo: '',
     manaButton: '',
+    activeManaSkill: {
+        name: 'Mana Skill',
+        description: 'You need to generate 7 mana points to get a Mana Skill.'
+    },
 
     chooseCharacter(character) {
         this.player = document.querySelector('.player');
@@ -143,10 +161,12 @@ const gameManager = {
         this.playerInfoAttack = document.querySelector('.player-info-attack');
         this.opponentInfoAttack = document.querySelector('.opponent-info-attack');
         this.manaInfo = document.querySelector('.mana-info');
+        this.manaSkillInfo = document.querySelector('.mana-skill-info');
         this.manaButton = document.getElementById('mana-button');
         this.activeCharacter = character;
         this.renderPlayerStats();
         this.basicHealth = this.activeCharacter.health;
+        this.basicAttack = this.activeCharacter.attack;
         this.selectContent(difficulty);
     },
 
@@ -184,7 +204,7 @@ const gameManager = {
     },
 
     renderPlayerStats() {
-        return this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li><b>Mana:</b> ' + this.activeCharacter.mana + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+        return this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li><b>Mana:</b> ' + this.activeCharacter.mana + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li><li><b> ' + this.activeManaSkill.name + ':</b> ' + this.activeManaSkill.description + '</li></ul></div>';
     },
 
     renderOpponentStats() {
@@ -197,6 +217,7 @@ const gameManager = {
         this.round += 1;
 
         this.manaInfo.innerHTML = '<p></p>';
+        this.manaSkillInfo.innerHTML = '<p></p>';
         this.opponentInfoAttack.innerHTML = '<p></p>';
         this.playerInfoAttack.innerHTML = '<p></p>';
         this.playerInfoSkill.innerHTML = '<p></p>';
@@ -208,7 +229,8 @@ const gameManager = {
         }
 
         if (this.activeCharacter.mana >= 7) {
-            this.manaButton.innerHTML = 'Mana Attack'
+            this.manaButton.innerHTML = 'Mana Attack';
+            this.generateManaSkill();
         }
 
         if (this.round===1) {
@@ -403,14 +425,25 @@ const gameManager = {
 
         if (this.activeCharacter.mana >= 7) {
             this.manaButton.innerHTML = 'Mana Attack';
+            this.generateManaSkill();
         }
 
         this.enemyAttack();
     },
 
+    generateManaSkill() {
+        if (this.activeManaSkill.name==='Mana Skill') {
+            this.activeManaSkill = manaSkills[getRandomNumber(0, manaSkills.length)];
+            this.manaSkillInfo.innerHTML = '<p>You gained new Mana Skill: ' + this.activeManaSkill.name + '</p>';
+            this.renderPlayerStats();
+        }
+        else return;
+    },
+
     manaAttack() {
 
         this.manaInfo.innerHTML = '<p></p>';
+        this.manaSkillInfo.innerHTML = '<p></p>';
         this.opponentInfoAttack.innerHTML = '<p></p>';
         this.playerInfoAttack.innerHTML = '<p></p>';
         this.playerInfoSkill.innerHTML = '<p></p>';
@@ -420,9 +453,49 @@ const gameManager = {
             this.manaButton.innerHTML = 'Regenerate';
         }
 
-        this.manaInfo.innerHTML = '<p>You did Mana Attack</p>';
+        let basicDamage;
 
+        switch (this.activeManaSkill.name) {
+            case 'Regeneration':
+                basicDamage = this.basicAttack;
+                this.regenerationCount = this.basicHealth - this.activeCharacter.health;
+                if (this.regenerationCount > this.basicHealth * 0,4) {
+                    this.regenerationCount = this.basicHealth * 0,4;
+                }
+                this.activeCharacter.health += this.basicHealth * 0.4;
+                if (this.activeCharacter.health > this.basicHealth) {
+                    this.activeCharacter.health = this.basicHealth;
+                }
+
+                this.manaSkillInfo.innerHTML = '<p>You regenerated ' + this.regenerationCount + ' health.</p>'
+                
+                
+                break;
         
+            default:
+                break;
+        }
+
+        let offsetDamage = getRandomNumber(20, 60);
+        basicDamage += offsetDamage;
+        let vulnerabilityDamage = 0;
+        if (this.activeEnemy.vulnerability===this.activeCharacter.name) {
+            vulnerabilityDamage = getRandomNumber(50, 150);
+        }
+        basicDamage += vulnerabilityDamage;
+        this.activeEnemy.health -= basicDamage;
+
+        this.renderOpponentStats();
+
+        this.playerInfoAttack.innerHTML = '<p>You caused ' + basicDamage + ' damage to your opponent.</p>'
+
+
+
+
+        this.activeManaSkill = {
+            name: 'Mana Skill',
+            description: 'You need to generate 7 mana points to get a Mana Skill.'
+        };
 
         this.enemyAttack();
 
