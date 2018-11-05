@@ -1,16 +1,17 @@
 class Character {
-    constructor(name, info, attack, health, agility, skills) {
+    constructor(name, info, attack, health, agility, mana, skills) {
         this.name = name;
         this.info = info;
         this.attack = attack;
         this.health = health;
         this.agility = agility;
+        this.mana = mana;
         this.skills = skills;
     }
 
 }
 
-const frodo = new Character('Frodo', 'some info', 270, 2640, 20,
+const frodo = new Character('Frodo', 'some info', 270, 2640, 20, 0, 
     {
         skill1: {
             name: 'The One Ring',
@@ -22,7 +23,7 @@ const frodo = new Character('Frodo', 'some info', 270, 2640, 20,
         },
 });
 
-const sam = new Character('Sam', 'some info', 280, 2800, 17, 
+const sam = new Character('Sam', 'some info', 280, 2800, 17, 0, 
     {
         skill1: {
             name: 'Iron Will',
@@ -34,7 +35,7 @@ const sam = new Character('Sam', 'some info', 280, 2800, 17,
         },
 });
 
-const legolas = new Character('Legolas', 'some info', 320, 2840, 18, 
+const legolas = new Character('Legolas', 'some info', 320, 2840, 18, 0, 
     {
         skill1: {
             name: 'Arrow Fury',
@@ -42,11 +43,11 @@ const legolas = new Character('Legolas', 'some info', 320, 2840, 18,
         },
         skill2: {
             name: 'Lighter than the Wind',
-            description: 'There is a 25% chance to evade attack by your enemy.'
+            description: 'There is a 30% chance to evade attack by your enemy.'
         },
 });
 
-const aragorn = new Character('Aragorn', 'some info', 350, 2840, 14, 
+const aragorn = new Character('Aragorn', 'some info', 350, 2840, 14, 0, 
     {
         skill1: {
             name: 'Anduril Sword',
@@ -58,7 +59,7 @@ const aragorn = new Character('Aragorn', 'some info', 350, 2840, 14,
         },
 });
 
-const gimli = new Character('Gimli', 'some info', 300, 2900, 10, 
+const gimli = new Character('Gimli', 'some info', 300, 2900, 10, 0, 
     {
         skill1: {
             name: 'Axe Fury',
@@ -70,7 +71,7 @@ const gimli = new Character('Gimli', 'some info', 300, 2900, 10,
         },
 });
 
-const gandalf = new Character('Gandalf', 'some info', 270, 2720, 12, 
+const gandalf = new Character('Gandalf', 'some info', 270, 2720, 12, 0, 
     {
         skill1: {
             name: 'White Light',
@@ -132,6 +133,7 @@ const gameManager = {
     playerInfoSkill: '',
     playerInfoAttack: '',
     opponentInfoAttack: '',
+    manaInfo: '',
 
     chooseCharacter(character) {
         this.player = document.querySelector('.player');
@@ -139,8 +141,9 @@ const gameManager = {
         this.playerInfoSkill = document.querySelector('.player-info-skill');
         this.playerInfoAttack = document.querySelector('.player-info-attack');
         this.opponentInfoAttack = document.querySelector('.opponent-info-attack');
+        this.manaInfo = document.querySelector('.mana-info')
         this.activeCharacter = character;
-        this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+        this.renderPlayerStats();
         this.basicHealth = this.activeCharacter.health;
         this.selectContent(difficulty);
     },
@@ -161,7 +164,7 @@ const gameManager = {
             this.activeEnemy = hardEnemies[getRandomNumber(0, hardEnemies.length)];
         }
 
-        this.opponent.innerHTML = '<h2> ' + this.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + this.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeEnemy.attack + '</li><li><b>Health:</b> ' + this.activeEnemy.health + '</li><li><b>Agility:</b> ' + this.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + this.activeEnemy.vulnerability + '</li></ul></div>';
+        this.renderOpponentStats();
         
         this.selectContent(arena);
     },
@@ -177,11 +180,30 @@ const gameManager = {
     newGame() {
         window.location = 'index.html';
     },
+
+    renderPlayerStats() {
+        return this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li><b>Mana:</b> ' + this.activeCharacter.mana + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+    },
+
+    renderOpponentStats() {
+        return this.opponent.innerHTML = '<h2> ' + this.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + this.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeEnemy.attack + '</li><li><b>Health:</b> ' + this.activeEnemy.health + '</li><li><b>Agility:</b> ' + this.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + this.activeEnemy.vulnerability + '</li></ul></div>';
+    },
     
 
     characterAttack() {
 
-        this.round += 1
+        this.round += 1;
+
+        this.manaInfo.innerHTML = '<p></p>';
+        this.opponentInfoAttack.innerHTML = '<p></p>';
+        this.playerInfoAttack.innerHTML = '<p></p>';
+        this.playerInfoSkill.innerHTML = '<p></p>';
+
+        if (getRandomNumber(1, 10) <= 8) {
+            this.activeCharacter.mana += 1;
+            this.renderPlayerStats();
+            this.manaInfo.innerHTML = '<p>You generated 1 mana.</p>';
+        }
 
         if (this.round===1) {
             if ((this.activeEnemy.agility + getRandomNumber(1, 10)) > (this.activeCharacter.agility + getRandomNumber(1, 10))) {
@@ -192,7 +214,7 @@ const gameManager = {
         if (this.activeCharacter.skills.skill1.name==='Axe Fury') {
             this.activeCharacter.attack *= 1.1;
             this.activeCharacter.attack = Math.round(this.activeCharacter.attack);
-            this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+            this.renderPlayerStats();
         }
 
         let basicDamage = this.activeCharacter.attack;
@@ -221,9 +243,9 @@ const gameManager = {
                         if (this.activeCharacter.health > this.basicHealth) {
                             this.activeCharacter.health = this.basicHealth;
                         }
-                        this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+                        this.renderPlayerStats();
                         if (this.regenerationCount > 0) {
-                        this.playerInfoSkill.innerHTML = '<p>You regenerated ' + this.regenerationCount + ' health.</p>';
+                            this.playerInfoSkill.innerHTML = '<p>You regenerated ' + this.regenerationCount + ' health.</p>';
                         }
                     }
                 }
@@ -248,9 +270,10 @@ const gameManager = {
 
         this.activeEnemy.health -= basicDamage;
 
-        this.opponent.innerHTML = '<h2> ' + this.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + this.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeEnemy.attack + '</li><li><b>Health:</b> ' + this.activeEnemy.health + '</li><li><b>Agility:</b> ' + this.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + this.activeEnemy.vulnerability + '</li></ul></div>';
+        this.renderOpponentStats();
 
         this.playerInfoAttack.innerHTML = '<p>You caused ' + basicDamage + ' damage to your opponent.</p>'
+
 
         if (this.activeEnemy.health <= 0) {
             this.activeEnemy.health = 0;
@@ -281,7 +304,7 @@ const gameManager = {
                 }         
                 break;
             case 'Lighter than the Wind':
-                if (getRandomNumber(1, 20)<=5) {
+                if (getRandomNumber(1, 10)<=3) {
                     this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
                     return;
                 }
@@ -294,8 +317,7 @@ const gameManager = {
                 break;
         
         }
-
-        this.enemyAttack()
+        this.enemyAttack();
         
     },
 
@@ -323,13 +345,13 @@ const gameManager = {
     
         this.opponentInfoAttack.innerHTML = '<p>Enemy caused you ' + basicDamage + ' damage.</p>';
     
-        this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
-        
+        this.renderPlayerStats();
+
         if (this.activeCharacter.health <= 0) {
             if (this.activeCharacter.skills.skill2.name==='Mithril shirt') {
                 if (getRandomNumber(1, 10) <= 5) {
                     this.activeCharacter.health = 700;
-                    this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+                    this.renderPlayerStats();
                     this.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + this.activeCharacter.health + ' health.</p>';
                     return;
                 }
@@ -338,14 +360,14 @@ const gameManager = {
                 if (this.activeEnemy.name==='King of the Dead') {
                     if (getRandomNumber(1, 10) <= 6) {
                         this.activeCharacter.health = 850;
-                        this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+                        this.renderPlayerStats();
                         this.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + this.activeCharacter.health + ' health.</p>';
                         return;
                     }
                 } else {
                     if (getRandomNumber(1, 10) <= 4) {
                         this.activeCharacter.health = 850;
-                        this.player.innerHTML = '<h2> ' + this.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + this.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeCharacter.attack + '</li><li><b>Health:</b> ' + this.activeCharacter.health + '</li><li><b>Agility:</b> ' + this.activeCharacter.agility + '</li><li> <b>' + this.activeCharacter.skills.skill1.name + ':</b> ' + this.activeCharacter.skills.skill1.description + '</li><li> <b>' + this.activeCharacter.skills.skill2.name + ':</b> ' + this.activeCharacter.skills.skill2.description + '</li></ul></div>';
+                        this.renderPlayerStats();
                         this.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + this.activeCharacter.health + ' health.</p>';
                         return;
                     }
