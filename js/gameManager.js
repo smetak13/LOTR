@@ -134,6 +134,7 @@ const gameManager = {
     playerInfoAttack: '',
     opponentInfoAttack: '',
     manaInfo: '',
+    manaButton: '',
 
     chooseCharacter(character) {
         this.player = document.querySelector('.player');
@@ -141,7 +142,8 @@ const gameManager = {
         this.playerInfoSkill = document.querySelector('.player-info-skill');
         this.playerInfoAttack = document.querySelector('.player-info-attack');
         this.opponentInfoAttack = document.querySelector('.opponent-info-attack');
-        this.manaInfo = document.querySelector('.mana-info')
+        this.manaInfo = document.querySelector('.mana-info');
+        this.manaButton = document.getElementById('mana-button');
         this.activeCharacter = character;
         this.renderPlayerStats();
         this.basicHealth = this.activeCharacter.health;
@@ -199,10 +201,14 @@ const gameManager = {
         this.playerInfoAttack.innerHTML = '<p></p>';
         this.playerInfoSkill.innerHTML = '<p></p>';
 
-        if (getRandomNumber(1, 10) <= 8) {
+        if (getRandomNumber(1, 10) <= 6) {
             this.activeCharacter.mana += 1;
             this.renderPlayerStats();
             this.manaInfo.innerHTML = '<p>You generated 1 mana.</p>';
+        }
+
+        if (this.activeCharacter.mana >= 7) {
+            this.manaButton.innerHTML = 'Mana Attack'
         }
 
         if (this.round===1) {
@@ -277,14 +283,14 @@ const gameManager = {
 
         if (this.activeEnemy.health <= 0) {
             this.activeEnemy.health = 0;
-            resultStats.innerHTML = '<h4>You win in ' + this.round + ' rounds</h4>';
+            resultStats.innerHTML = '<h4>You win in ' + this.round + ' rounds.</h4>';
             return this.selectContent(result);
         }
 
         
         if (this.activeCharacter.skills.skill1.name==='The One Ring') {
             if (getRandomNumber(1, 10)<=5) {
-                this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
+                this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack.</p>';
                 return;
             }
         }
@@ -293,25 +299,25 @@ const gameManager = {
             case 'Light of Galadriel':
                 if (this.activeEnemy.name==='Shelob') {
                     if (getRandomNumber(1, 10)<=5) {
-                        this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
+                        this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                         return;
                     }
                 } else {
                     if (getRandomNumber(1, 10)<=4) {
-                        this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
+                        this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                         return;
                     }
                 }         
                 break;
             case 'Lighter than the Wind':
                 if (getRandomNumber(1, 10)<=3) {
-                    this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack</p>';
+                    this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack.</p>';
                     return;
                 }
                 break;
             case 'Stunning':
                 if (getRandomNumber(1, 10)<=3) {
-                    this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack</p>';
+                    this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                     return;
                 }
                 break;
@@ -374,10 +380,52 @@ const gameManager = {
                 }
             }
                 this.activeCharacter.health = 0;
-                resultStats.innerHTML = '<h4>You lose in ' + this.round + ' rounds</h4>'
+                resultStats.innerHTML = '<h4>You lose in ' + this.round + ' rounds.</h4>'
                 this.selectContent(result);
         }
     
+    },
+
+    regenerateMana() {
+
+        this.round += 1;
+
+        if (this.manaButton.innerHTML==='Mana Attack') {
+            return this.manaAttack();
+        }
+
+        this.activeCharacter.mana += 3;
+
+        this.manaInfo.innerHTML = '<p>You generated 3 mana.</p>';
+        this.opponentInfoAttack.innerHTML = '<p></p>';
+        this.playerInfoAttack.innerHTML = '<p></p>';
+        this.playerInfoSkill.innerHTML = '<p></p>';
+
+        if (this.activeCharacter.mana >= 7) {
+            this.manaButton.innerHTML = 'Mana Attack';
+        }
+
+        this.enemyAttack();
+    },
+
+    manaAttack() {
+
+        this.manaInfo.innerHTML = '<p></p>';
+        this.opponentInfoAttack.innerHTML = '<p></p>';
+        this.playerInfoAttack.innerHTML = '<p></p>';
+        this.playerInfoSkill.innerHTML = '<p></p>';
+
+        this.activeCharacter.mana -= 7;
+        if (this.activeCharacter.mana < 7) {
+            this.manaButton.innerHTML = 'Regenerate';
+        }
+
+        this.manaInfo.innerHTML = '<p>You did Mana Attack</p>';
+
+        
+
+        this.enemyAttack();
+
     }
 
 }
