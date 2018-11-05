@@ -453,14 +453,13 @@ const gameManager = {
             this.manaButton.innerHTML = 'Regenerate';
         }
 
-        let basicDamage;
+        let basicDamage = this.basicAttack;
 
         switch (this.activeManaSkill.name) {
             case 'Regeneration':
-                basicDamage = this.basicAttack;
                 this.regenerationCount = this.basicHealth - this.activeCharacter.health;
-                if (this.regenerationCount > this.basicHealth * 0,4) {
-                    this.regenerationCount = this.basicHealth * 0,4;
+                if (this.regenerationCount > this.basicHealth * 0.4) {
+                    this.regenerationCount = this.basicHealth * 0.4;
                 }
                 this.activeCharacter.health += this.basicHealth * 0.4;
                 if (this.activeCharacter.health > this.basicHealth) {
