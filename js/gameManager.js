@@ -436,11 +436,15 @@ const gameManager = {
     generateManaSkill() {
         if (this.activeManaSkill.name==='Mana Skill') {
             this.activeManaSkill = manaSkills[this.getRandomNumber(0, manaSkills.length)];
-            if (this.activeManaSkill.name!=='Mana Skill') {
+            if (this.activeManaSkill===undefined) {
+                this.activeManaSkill = { 
+                    name: 'Mana Skill',
+                    description: 'You need to generate 7 mana points to get a Mana Skill.'
+                }
+                return this.generateManaSkill();
+            } else {
                 this.manaSkillInfo.innerHTML = '<p>You gained new Mana Skill: ' + this.activeManaSkill.name + '</p>';
                 this.renderPlayerStats();
-            } else {
-                return this.generateManaSkill();
             }
         }
         else return;
