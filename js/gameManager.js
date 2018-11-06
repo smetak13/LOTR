@@ -5,6 +5,9 @@ const gameManager = {
     activeEnemy: '',
     player: '',
     opponent: '',
+    playerResult: '',
+    opponentResult: '',
+    resultStats: '',
     round: 0,
     basicHealth: '',
     basicAttack: '',
@@ -27,6 +30,9 @@ const gameManager = {
     chooseCharacter(character) {
         this.player = document.querySelector('.player');
         this.opponent = document.querySelector('.opponent');
+        this.playerResult = document.querySelector('.player-result');
+        this.opponentResult = document.querySelector('.opponent-result');
+        this.resultStats = document.querySelector('.result-stats');
         this.playerInfoSkill = document.querySelector('.player-info-skill');
         this.playerInfoAttack = document.querySelector('.player-info-attack');
         this.opponentInfoAttack = document.querySelector('.opponent-info-attack');

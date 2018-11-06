@@ -5,7 +5,6 @@ let arena = document.querySelector('.arena');
 arena.style.display = 'none';
 let result = document.querySelector('.result');
 result.style.display = 'none';
-let resultStats = document.querySelector('.result-stats')
 let frodoStats = document.querySelector('.frodo-stats');
 let samStats = document.querySelector('.sam-stats');
 let legolasStats = document.querySelector('.legolas-stats');

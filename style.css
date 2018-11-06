@@ -34,8 +34,10 @@ h3 {
 }
 
 h4 {
-    padding-top: 50px;
-    padding-bottom: 40px;
+    padding-top: 0px;
+    margin: 0px;
+    padding-bottom: 20px;
+    font-size: 19px;
 }
 
 .characters {
@@ -85,14 +87,14 @@ h4 {
     line-height: 14px;
 }
 
-.player {
+.player, .player-result {
     margin-top: 0px;
     width: 60%;
     margin: auto;
     height: 240px;
 }
 
-.opponent {
+.opponent, .opponent-result {
     width: 60%;
     margin: auto;
 }
@@ -147,7 +149,12 @@ button:hover {
 }
 
 #new-game {
-    margin-top: 50px;
-    width: 160px;
-    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 35px;
+    width: 150px;
+    height: 55px;
+}
+
+#dead {
+    color: rgb(180, 9, 9);
 }
