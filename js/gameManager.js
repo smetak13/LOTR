@@ -111,10 +111,6 @@ const balrog = new Enemy('Balrog', 'hard', 'Gandalf', 490, 4240, 8);
 const kingOfTheDead = new Enemy('King of the Dead', 'hard', 'Aragorn', 370, 4600, 15);
 const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 4850, 7);
 
-const easyEnemies = [greatSpider, orc, warg, gollum];
-const mediumEnemies = [orcLeader, nazgul, shelob, troll, oliphant];
-const hardEnemies = [saruman, balrog, kingOfTheDead, sauron];
-
 class ManaSkill {
     constructor(name, description) {
         this.name = name;
@@ -129,9 +125,6 @@ const reflection = new ManaSkill('Reflection', 'your basic attack is increased b
 
 const manaSkills = [regeneration, bloodsucker, craze, reflection];
 
-function getRandomNumber(start, range) {
-    return Math.round((Math.random() * (range-start)) + start);
-}
 
 const gameManager = {
 
@@ -152,6 +145,13 @@ const gameManager = {
     activeManaSkill: {
         name: 'Mana Skill',
         description: 'You need to generate 7 mana points to get a Mana Skill.'
+    },
+    easyEnemies: [greatSpider, orc, warg, gollum],
+    mediumEnemies: [orcLeader, nazgul, shelob, troll, oliphant],
+    hardEnemies: [saruman, balrog, kingOfTheDead, sauron],
+
+    getRandomNumber(start, range) {
+        return Math.round((Math.random() * (range-start)) + start);
     },
 
     chooseCharacter(character) {
@@ -177,17 +177,19 @@ const gameManager = {
     chooseEnemy(difficulty) {
         
         if (difficulty === 'easy') {
-            this.activeEnemy = easyEnemies[getRandomNumber(0, easyEnemies.length)];
+            this.activeEnemy = this.easyEnemies[this.getRandomNumber(0, this.easyEnemies.length)];
+            if (this.activeEnemy===undefined) return this.chooseEnemy(difficulty);
         }
         if (difficulty === 'medium') {
-            this.activeEnemy = mediumEnemies[getRandomNumber(0, mediumEnemies.length)];
+            this.activeEnemy = this.mediumEnemies[this.getRandomNumber(0, this.mediumEnemies.length)];
+            if (this.activeEnemy===undefined) return this.chooseEnemy(difficulty);
         }
         if (difficulty === 'hard') {
-            this.activeEnemy = hardEnemies[getRandomNumber(0, hardEnemies.length)];
+            this.activeEnemy = this.hardEnemies[this.getRandomNumber(0, this.hardEnemies.length)];
+            if (this.activeEnemy===undefined) return this.chooseEnemy(difficulty);
         }
 
         this.renderOpponentStats();
-        
         this.selectContent(arena);
     },
 
@@ -222,7 +224,7 @@ const gameManager = {
         this.playerInfoAttack.innerHTML = '<p></p>';
         this.playerInfoSkill.innerHTML = '<p></p>';
 
-        if (getRandomNumber(1, 10) <= 6) {
+        if (this.getRandomNumber(1, 10) <= 6) {
             this.activeCharacter.mana += 1;
             this.renderPlayerStats();
             this.manaInfo.innerHTML = '<p>You generated 1 mana.</p>';
@@ -234,7 +236,7 @@ const gameManager = {
         }
 
         if (this.round===1) {
-            if ((this.activeEnemy.agility + getRandomNumber(1, 10)) > (this.activeCharacter.agility + getRandomNumber(1, 10))) {
+            if ((this.activeEnemy.agility + this.getRandomNumber(1, 10)) > (this.activeCharacter.agility + this.getRandomNumber(1, 10))) {
                 return this.enemyAttack();
             }
         }
@@ -247,13 +249,13 @@ const gameManager = {
 
         let basicDamage = this.activeCharacter.attack;
 
-        let offsetDamage = getRandomNumber(20, 60);
+        let offsetDamage = this.getRandomNumber(20, 60);
         basicDamage += offsetDamage;
 
         let vulnerabilityDamage = 0;
 
         if (this.activeEnemy.vulnerability===this.activeCharacter.name) {
-            vulnerabilityDamage = getRandomNumber(50, 150);
+            vulnerabilityDamage = this.getRandomNumber(50, 150);
         }
 
         basicDamage += vulnerabilityDamage;
@@ -262,7 +264,7 @@ const gameManager = {
             case 'Iron Will':
                 if (this.round > 1) {
                     this.playerInfoSkill.innerHTML = '<p></p>';
-                    if (getRandomNumber(1, 10) <= 4) {
+                    if (this.getRandomNumber(1, 10) <= 4) {
                         this.regenerationCount = this.basicHealth - this.activeCharacter.health;
                         if (this.regenerationCount > 150) {
                             this.regenerationCount = 150;
@@ -279,17 +281,17 @@ const gameManager = {
                 }
             break;
             case 'Anduril Sword':
-                if (getRandomNumber(1, 10) <= 5) {
+                if (this.getRandomNumber(1, 10) <= 5) {
                     basicDamage += this.activeEnemy.attack
                 }
             break; 
             case 'Arrow Fury':
-                if (getRandomNumber(1, 10) <= 4) {
+                if (this.getRandomNumber(1, 10) <= 4) {
                     basicDamage *= 2;
                 }
             break;
             case 'White Light':
-                if (getRandomNumber(1, 10) <= 3) {
+                if (this.getRandomNumber(1, 10) <= 3) {
                     basicDamage *= 3;
                 }
             break;
@@ -311,7 +313,7 @@ const gameManager = {
 
         
         if (this.activeCharacter.skills.skill1.name==='The One Ring') {
-            if (getRandomNumber(1, 10)<=5) {
+            if (this.getRandomNumber(1, 10)<=5) {
                 this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack.</p>';
                 return;
             }
@@ -320,25 +322,25 @@ const gameManager = {
         switch (this.activeCharacter.skills.skill2.name) {
             case 'Light of Galadriel':
                 if (this.activeEnemy.name==='Shelob') {
-                    if (getRandomNumber(1, 10)<=5) {
+                    if (this.getRandomNumber(1, 10)<=5) {
                         this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                         return;
                     }
                 } else {
-                    if (getRandomNumber(1, 10)<=4) {
+                    if (this.getRandomNumber(1, 10)<=4) {
                         this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                         return;
                     }
                 }         
                 break;
             case 'Lighter than the Wind':
-                if (getRandomNumber(1, 10)<=3) {
+                if (this.getRandomNumber(1, 10)<=3) {
                     this.opponentInfoAttack.innerHTML = '<p>You dodged your enemy´s attack.</p>';
                     return;
                 }
                 break;
             case 'Stunning':
-                if (getRandomNumber(1, 10)<=3) {
+                if (this.getRandomNumber(1, 10)<=3) {
                     this.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                     return;
                 }
@@ -353,17 +355,17 @@ const gameManager = {
 
         let basicDamage = this.activeEnemy.attack;
     
-        let offsetDamage = getRandomNumber(20, 120);
+        let offsetDamage = this.getRandomNumber(20, 120);
     
         basicDamage += offsetDamage;
     
         if (this.activeCharacter.skills.skill2.name==='You Shall Not Pass') {
             if (this.activeEnemy.name==='Balrog') {
-                if (getRandomNumber(1, 10) <= 6) {
+                if (this.getRandomNumber(1, 10) <= 6) {
                     basicDamage = 170;
                 }
             } else {
-                if (getRandomNumber(1, 10) <= 5) {
+                if (this.getRandomNumber(1, 10) <= 5) {
                     basicDamage = 170;
                 }
             }
@@ -377,7 +379,7 @@ const gameManager = {
 
         if (this.activeCharacter.health <= 0) {
             if (this.activeCharacter.skills.skill2.name==='Mithril shirt') {
-                if (getRandomNumber(1, 10) <= 5) {
+                if (this.getRandomNumber(1, 10) <= 5) {
                     this.activeCharacter.health = 700;
                     this.renderPlayerStats();
                     this.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + this.activeCharacter.health + ' health.</p>';
@@ -386,14 +388,14 @@ const gameManager = {
             }
             if (this.activeCharacter.skills.skill2.name==='Deal with the Dead') {
                 if (this.activeEnemy.name==='King of the Dead') {
-                    if (getRandomNumber(1, 10) <= 6) {
+                    if (this.getRandomNumber(1, 10) <= 6) {
                         this.activeCharacter.health = 850;
                         this.renderPlayerStats();
                         this.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + this.activeCharacter.health + ' health.</p>';
                         return;
                     }
                 } else {
-                    if (getRandomNumber(1, 10) <= 4) {
+                    if (this.getRandomNumber(1, 10) <= 4) {
                         this.activeCharacter.health = 850;
                         this.renderPlayerStats();
                         this.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + this.activeCharacter.health + ' health.</p>';
@@ -433,9 +435,13 @@ const gameManager = {
 
     generateManaSkill() {
         if (this.activeManaSkill.name==='Mana Skill') {
-            this.activeManaSkill = manaSkills[getRandomNumber(0, manaSkills.length)];
-            this.manaSkillInfo.innerHTML = '<p>You gained new Mana Skill: ' + this.activeManaSkill.name + '</p>';
-            this.renderPlayerStats();
+            this.activeManaSkill = manaSkills[this.getRandomNumber(0, manaSkills.length)];
+            if (this.activeManaSkill.name!=='Mana Skill') {
+                this.manaSkillInfo.innerHTML = '<p>You gained new Mana Skill: ' + this.activeManaSkill.name + '</p>';
+                this.renderPlayerStats();
+            } else {
+                return this.generateManaSkill();
+            }
         }
         else return;
     },
@@ -472,11 +478,11 @@ const gameManager = {
                 break;
         }
 
-        let offsetDamage = getRandomNumber(20, 60);
+        let offsetDamage = this.getRandomNumber(20, 60);
         basicDamage += offsetDamage;
         let vulnerabilityDamage = 0;
         if (this.activeEnemy.vulnerability===this.activeCharacter.name) {
-            vulnerabilityDamage = getRandomNumber(50, 150);
+            vulnerabilityDamage = this.getRandomNumber(50, 150);
         }
         basicDamage += vulnerabilityDamage;
         this.activeEnemy.health -= basicDamage;
