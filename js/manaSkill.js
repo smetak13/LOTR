@@ -143,8 +143,8 @@ function manaAttack() {
         gameManager.renderOpponentStats();
         if (gameManager.activeEnemy.health <= 0) {
             gameManager.activeEnemy.health = 0;
-            gameManager.playerResult.innerHTML = '<h2> ' + gameManager.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + gameManager.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeCharacter.attack + '</li><li><b>Health:</b> ' + gameManager.activeCharacter.health + '</li><li><b>Agility:</b> ' + gameManager.activeCharacter.agility + '</li><li><b>Mana:</b> ' + gameManager.activeCharacter.mana + '</li><li> <b>' + gameManager.activeCharacter.skills.skill1.name + ':</b> ' + gameManager.activeCharacter.skills.skill1.description + '</li><li> <b>' + gameManager.activeCharacter.skills.skill2.name + ':</b> ' + gameManager.activeCharacter.skills.skill2.description + '</li><li><b> ' + gameManager.activeManaSkill.name + ':</b> ' + gameManager.activeManaSkill.description + '</li></ul></div>';
-            gameManager.opponentResult.innerHTML = '<h2> ' + gameManager.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + gameManager.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeEnemy.attack + '</li><li><b>Health:</b> ' + gameManager.activeEnemy.health + '</li><li><b>Agility:</b> ' + gameManager.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + gameManager.activeEnemy.vulnerability + '</li></ul></div>';
+            gameManager.playerResult.innerHTML = gameManager.renderPlayerStats();
+            gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
             gameManager.opponentResult.setAttribute('id', 'dead');
             gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
             return gameManager.selectContent(result);
@@ -161,8 +161,8 @@ function manaAttack() {
 
     if (gameManager.activeEnemy.health <= 0) {
         gameManager.activeEnemy.health = 0;
-        gameManager.playerResult.innerHTML = '<h2> ' + gameManager.activeCharacter.name + ' </h2><div class="stats-arena"><img src="./characters/' + gameManager.activeCharacter.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeCharacter.attack + '</li><li><b>Health:</b> ' + gameManager.activeCharacter.health + '</li><li><b>Agility:</b> ' + gameManager.activeCharacter.agility + '</li><li><b>Mana:</b> ' + gameManager.activeCharacter.mana + '</li><li> <b>' + gameManager.activeCharacter.skills.skill1.name + ':</b> ' + gameManager.activeCharacter.skills.skill1.description + '</li><li> <b>' + gameManager.activeCharacter.skills.skill2.name + ':</b> ' + gameManager.activeCharacter.skills.skill2.description + '</li><li><b> ' + gameManager.activeManaSkill.name + ':</b> ' + gameManager.activeManaSkill.description + '</li></ul></div>';
-        gameManager.opponentResult.innerHTML = '<h2> ' + gameManager.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + gameManager.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + gameManager.activeEnemy.attack + '</li><li><b>Health:</b> ' + gameManager.activeEnemy.health + '</li><li><b>Agility:</b> ' + gameManager.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + gameManager.activeEnemy.vulnerability + '</li></ul></div>';
+        gameManager.playerResult.innerHTML = gameManager.renderPlayerStats();
+        gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
         gameManager.opponentResult.setAttribute('id', 'dead');
         gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
         return gameManager.selectContent(result);
