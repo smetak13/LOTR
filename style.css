@@ -7,7 +7,6 @@ body {
     background-color: rgba(255, 255, 255, 0.747);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 17px;
-    padding-bottom: 70px;
 }
 
 h1 {
@@ -90,6 +89,7 @@ h4 {
     margin-top: 0px;
     width: 60%;
     margin: auto;
+    height: 240px;
 }
 
 .opponent {
@@ -100,6 +100,7 @@ h4 {
 ul {
     list-style-type: none;
     margin-top: 0px;
+    margin-bottom: 0px;
     padding: 10px;
     text-align: left;
 }

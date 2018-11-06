@@ -1,4 +1,3 @@
-
 class ManaSkill {
     constructor(name, description) {
         this.name = name;
@@ -14,6 +13,7 @@ const reflection = new ManaSkill('Reflection', 'your basic attack is increased b
 const manaSkills = [regeneration, bloodsucker, craze, reflection];
 
 
+
 function regenerateMana() {
 
     gameManager.round += 1;
@@ -25,6 +25,7 @@ function regenerateMana() {
     gameManager.activeCharacter.mana += 3;
 
     gameManager.manaInfo.innerHTML = '<p>You generated 3 mana.</p>';
+    gameManager.manaSkillInfo.innerHTML = '<p></p>';
     gameManager.opponentInfoAttack.innerHTML = '<p></p>';
     gameManager.playerInfoAttack.innerHTML = '<p></p>';
     gameManager.playerInfoSkill.innerHTML = '<p></p>';
@@ -36,6 +37,8 @@ function regenerateMana() {
 
     enemyAttack();
 }
+
+
 
 function generateManaSkill() {
     if (gameManager.activeManaSkill.name==='Mana Skill') {
@@ -54,7 +57,11 @@ function generateManaSkill() {
     else return;
 }
 
+
+
 function manaAttack() {
+
+    gameManager.round += 1;
 
     gameManager.manaInfo.innerHTML = '<p></p>';
     gameManager.manaSkillInfo.innerHTML = '<p></p>';
@@ -66,6 +73,8 @@ function manaAttack() {
     if (gameManager.activeCharacter.mana < 7) {
         gameManager.manaButton.innerHTML = 'Regenerate';
     }
+
+    gameManager.renderPlayerStats();
 
     let basicDamage = gameManager.basicAttack;
 
@@ -81,8 +90,17 @@ function manaAttack() {
             }
 
             gameManager.manaSkillInfo.innerHTML = '<p>You regenerated ' + gameManager.regenerationCount + ' health.</p>'
+            gameManager.renderPlayerStats();
             
-            
+            break;
+        case 'Craze':
+            basicDamage *= 4;
+            break;
+        case 'Reflection':
+            basicDamage *= 2.5;
+            break;
+        case 'Bloodsucker':
+            basicDamage *= 2.5;
             break;
     }
 
@@ -97,15 +115,60 @@ function manaAttack() {
 
     gameManager.renderOpponentStats();
 
-    gameManager.playerInfoAttack.innerHTML = '<p>You caused ' + basicDamage + ' damage to your opponent.</p>'
+    gameManager.manaInfo.innerHTML = '<p>You caused ' + basicDamage + ' damage to your opponent.</p>';
 
 
+    if (gameManager.activeManaSkill.name==='Bloodsucker') {
+        gameManager.regenerationCount = gameManager.basicHealth - basicDamage;
+            if (gameManager.regenerationCount > basicDamage) {
+                gameManager.regenerationCount = basicDamage;
+            }
+            gameManager.activeCharacter.health += basicDamage;
+            if (gameManager.activeCharacter.health > gameManager.basicHealth) {
+                gameManager.activeCharacter.health = gameManager.basicHealth;
+            }
+
+            gameManager.manaSkillInfo.innerHTML = '<p>You regenerated ' + gameManager.regenerationCount + ' health.</p>';
+            gameManager.renderPlayerStats();
+    }
+
+
+    if (gameManager.activeManaSkill.name==='Reflection') {
+
+        let basicDamage = gameManager.activeEnemy.attack;
+        let offsetDamage = gameManager.getRandomNumber(20, 120);
+        basicDamage += offsetDamage;
+        gameManager.activeEnemy.health -= basicDamage;
+        gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent´s attack was reflected back at him and caused ' + basicDamage + ' damage.';
+        gameManager.renderOpponentStats();
+        if (gameManager.activeEnemy.health <= 0) {
+            gameManager.activeEnemy.health = 0;
+            resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
+            return gameManager.selectContent(result);
+        } else {
+            gameManager.activeManaSkill = {
+                name: 'Mana Skill',
+                description: 'You need to generate 7 mana points to get a Mana Skill.'
+            };
+            gameManager.renderPlayerStats();
+            return;
+        }
+    }
+
+
+    if (gameManager.activeEnemy.health <= 0) {
+        gameManager.activeEnemy.health = 0;
+        resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
+        return gameManager.selectContent(result);
+    }
 
 
     gameManager.activeManaSkill = {
         name: 'Mana Skill',
         description: 'You need to generate 7 mana points to get a Mana Skill.'
     };
+
+    gameManager.renderPlayerStats();
 
     enemyAttack();
 

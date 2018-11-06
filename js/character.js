@@ -83,6 +83,8 @@ const gandalf = new Character('Gandalf', 'some info', 270, 2720, 12, 0,
         },
 });
 
+
+
 function characterAttack() {
 
     gameManager.round += 1;
