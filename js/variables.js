@@ -56,7 +56,7 @@ function playAudio() {
 
 let audioStatus;
 
-function stopAudio() {
+function pauseAudio() {
 
     if (audioStatus === undefined) {
         activeAudio.pause();
