@@ -49,6 +49,7 @@ const soundtrack = [
 let activeAudio;
 
 function playAudio() {
+
     activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length)]
     activeAudio.play();
 }
@@ -56,6 +57,7 @@ function playAudio() {
 let audioStatus;
 
 function stopAudio() {
+
     if (audioStatus === undefined) {
         activeAudio.pause();
         audioStatus = 'playing';

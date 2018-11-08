@@ -67,7 +67,7 @@ const gimli = new Character('Gimli', 'some info', 300, 2900, 10, 0,
         },
         skill2: {
             name: 'Stunning',
-            description: 'There is a 20% chance the enemy will be stunned in the next round.'
+            description: 'There is a 30% chance the enemy will be stunned in the next round.'
         },
 });
 
@@ -214,7 +214,7 @@ function characterAttack() {
             }
             break;
         case 'Stunning':
-            if (gameManager.getRandomNumber(1, 10)<=2) {
+            if (gameManager.getRandomNumber(1, 10)<=3) {
                 gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent is stunned and cannot attack.</p>';
                 return;
             }
