@@ -17,6 +17,12 @@ h1 {
     letter-spacing: 1px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 35px;
+    padding-left: 180px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
 }
 
 h2 {
@@ -158,4 +164,9 @@ button:hover {
 
 #dead {
     color: rgb(180, 9, 9);
+}
+
+#audio-icon {
+    cursor: pointer;
+    padding-top: 20px;
 }

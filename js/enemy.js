@@ -23,7 +23,7 @@ const oliphant = new Enemy('Oliphant', 'medium', 'Legolas', 360, 4300, 9);
 const saruman = new Enemy('Saruman', 'hard', 'Gandalf', 350, 4940, 12);
 const balrog = new Enemy('Balrog', 'hard', 'Gandalf', 490, 4640, 8);
 const kingOfTheDead = new Enemy('King of the Dead', 'hard', 'Aragorn', 370, 5020, 15);
-const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 5250, 7);
+const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 5250, 10);
 
 const easyEnemies = [greatSpider, orc, warg, gollum];
 const mediumEnemies = [orcLeader, nazgul, shelob, troll, oliphant];
