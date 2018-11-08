@@ -35,7 +35,7 @@ function enemyAttack() {
 
     let basicDamage = gameManager.activeEnemy.attack;
 
-    let offsetDamage = gameManager.getRandomNumber(50, 170);
+    let offsetDamage = gameManager.getRandomNumber(30, 140);
 
     basicDamage += offsetDamage;
 
