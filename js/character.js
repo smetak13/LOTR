@@ -51,7 +51,7 @@ const aragorn = new Character('Aragorn', 'some info', 350, 2840, 14, 0,
     {
         skill1: {
             name: 'Anduril Sword',
-            description: 'There is a 50% chance your attack increases by your opponent´s basic attack.'
+            description: 'There is a 60% chance your attack increases by your opponent´s basic attack.'
         },
         skill2: {
             name: 'Deal with the Dead',
@@ -152,7 +152,7 @@ function characterAttack() {
             }
         break;
         case 'Anduril Sword':
-            if (gameManager.getRandomNumber(1, 10) <= 5) {
+            if (gameManager.getRandomNumber(1, 10) <= 6) {
                 basicDamage += gameManager.activeEnemy.attack
             }
         break; 
