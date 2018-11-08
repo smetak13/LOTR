@@ -75,7 +75,7 @@ function enemyAttack() {
                     return;
                 }
             } else {
-                if (gameManager.getRandomNumber(1, 10) <= 4) {
+                if (gameManager.getRandomNumber(1, 10) <= 5) {
                     gameManager.activeCharacter.health = 850;
                     gameManager.renderPlayerStats();
                     gameManager.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + gameManager.activeCharacter.health + ' health.</p>';

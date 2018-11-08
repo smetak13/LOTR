@@ -55,7 +55,7 @@ const aragorn = new Character('Aragorn', 'some info', 350, 2840, 14, 0,
         },
         skill2: {
             name: 'Deal with the Dead',
-            description: 'After the card dies, there is a 40% chance the card is ressurected and continues with 850 health. The chance is 60% against the King of the Dead.'
+            description: 'After the card dies, there is a 50% chance the card is ressurected and continues with 850 health. The chance is 60% against the King of the Dead.'
         },
 });
 
