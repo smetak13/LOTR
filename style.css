@@ -47,6 +47,11 @@ h4 {
     font-size: 19px;
 }
 
+h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
 .characters {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -74,6 +79,7 @@ h4 {
     display: grid;
     grid-template-columns: 1fr 4fr;
     margin: auto;
+    margin-bottom: 0px;
 }
 
 .battlefield {
@@ -82,12 +88,13 @@ h4 {
     width: 60%;
     margin: auto;
     margin-top: 0px;
-    grid-auto-rows: minmax(170px, auto);
+    grid-auto-rows: minmax(187px, auto);
 }
 
 .player-info {
     text-align: left;
     padding-left: 50px;
+    padding-top: 17px;
 }
 
 .player-info p {

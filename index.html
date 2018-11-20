@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>Lord of the Rings Web Game</h1>
-        <img onclick="pauseAudio()" id="audio-icon" src="audioIcon.svg" width="40">
+        <img onclick="playAudio()" id="audio-icon" src="audioIcon.svg" width="40">
     </header>
 
     <section>
@@ -75,6 +75,7 @@
             <div class="player"></div>
             <div class="battlefield">
                 <div class="attack">
+                    <span id="rounds-counter"></span>
                     <button class="button-arena" onclick="characterAttack()">Attack</button>
                     <button id="mana-button" class="button-arena" onclick="regenerateMana()">Regenerate</button>
                 </div>

@@ -88,6 +88,7 @@ const gandalf = new Character('Gandalf', 'some info', 270, 2720, 12, 0,
 function characterAttack() {
 
     gameManager.round += 1;
+    gameManager.roundsCounter.innerHTML = '<h5>Round: ' + gameManager.round + '</h5>'
 
     gameManager.manaInfo.innerHTML = '<p></p>';
     gameManager.manaSkillInfo.innerHTML = '<p></p>';

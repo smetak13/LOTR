@@ -9,6 +9,7 @@ const gameManager = {
     opponentResult: '',
     resultStats: '',
     round: 0,
+    roundsCounter: '',
     basicHealth: '',
     basicAttack: '',
     regenerationCount: '',
@@ -39,6 +40,8 @@ const gameManager = {
         this.manaInfo = document.querySelector('.mana-info');
         this.manaSkillInfo = document.querySelector('.mana-skill-info');
         this.manaButton = document.getElementById('mana-button');
+        this.roundsCounter = document.getElementById('rounds-counter');
+        this.roundsCounter.innerHTML = '<h5>Round: 1<h5>';
         this.activeCharacter = character;
         this.renderPlayerStats();
         this.basicHealth = this.activeCharacter.health;
