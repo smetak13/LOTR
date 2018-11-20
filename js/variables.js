@@ -46,12 +46,17 @@ const soundtrack = [
     new Audio('./audio/18.mp3'),  
      
 ]
-const activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length)]
+let activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length)]
 
 
 let audioStatus;
 
 function playAudio() {
+
+    if (activeAudio === undefined) {
+        activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length)];
+        return playAudio();
+    }
 
     if (audioStatus === undefined) {
         activeAudio.pause();

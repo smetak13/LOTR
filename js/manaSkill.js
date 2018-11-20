@@ -62,7 +62,7 @@ function generateManaSkill() {
 function manaAttack() {
 
     gameManager.round += 1;
-    gameManager.roundsCounter.innerHTML = '<h4>Round: ' + gameManager.round + '</h4>'
+    gameManager.roundsCounter.innerHTML = '<h5>Round: ' + gameManager.round + '</h5>'
 
     gameManager.manaInfo.innerHTML = '<p></p>';
     gameManager.manaSkillInfo.innerHTML = '<p></p>';
