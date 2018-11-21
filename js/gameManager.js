@@ -3,6 +3,7 @@ const gameManager = {
 
     activeCharacter: '',
     activeEnemy: '',
+    activeRune: '',
     player: '',
     opponent: '',
     playerResult: '',
@@ -46,6 +47,11 @@ const gameManager = {
         this.renderPlayerStats();
         this.basicHealth = this.activeCharacter.health;
         this.basicAttack = this.activeCharacter.attack;
+        this.selectContent(rune);
+    },
+
+    chooseRune(rune) {
+        this.activeRune = rune;
         this.selectContent(difficulty);
     },
 
@@ -76,6 +82,7 @@ const gameManager = {
 
     selectContent(page) {
         menu.style.display = 'none';
+        rune.style.display = 'none';
         difficulty.style.display = 'none';
         arena.style.display = 'none';
         result.style.display = 'none';

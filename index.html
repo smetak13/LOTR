@@ -63,8 +63,18 @@
             </div>
 
         </div>
+        <div class="rune">
+            <h2 class="center">Choose a rune</h2>
+            <div class="rune" onclick="gameManager.chooseRune(fire)"></div>
+            <div class="rune" onclick="gameManager.chooseRune(water)"></div>
+            <div class="rune" onclick="gameManager.chooseRune(earth)"></div>
+            <div class="rune" onclick="gameManager.chooseRune(air)"></div>
+
+
+        </div>
 
         <div class="difficulty">
+            <h2 class="center">Choose difficulty</h2>
             <button id="first-button" onclick="gameManager.chooseDifficulty('easy')">Easy</button>
             <button onclick="gameManager.chooseDifficulty('medium')">Medium</button>
             <button onclick="gameManager.chooseDifficulty('hard')">Hard</button>
@@ -107,6 +117,7 @@
     <script src="./js/character.js"></script>
     <script src="./js/enemy.js"></script>
     <script src="./js/manaSkill.js"></script>
+    <script src="./js/rune.js"></script>
     <script src="./js/gameManager.js"></script>
     <script src="./js/variables.js"></script>
 </body>

@@ -1,5 +1,7 @@
 let body = document.querySelector('body');
 let menu = document.querySelector('.menu');
+let rune = document.querySelector('.rune');
+rune.style.display = 'none';
 let difficulty = document.querySelector('.difficulty');
 difficulty.style.display = 'none';
 let campaign = document.querySelector('.campaign');
