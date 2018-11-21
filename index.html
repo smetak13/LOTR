@@ -65,10 +65,36 @@
         </div>
         <div class="rune">
             <h2 class="center">Choose a rune</h2>
-            <div class="rune" onclick="gameManager.chooseRune(fire)"></div>
-            <div class="rune" onclick="gameManager.chooseRune(water)"></div>
-            <div class="rune" onclick="gameManager.chooseRune(earth)"></div>
-            <div class="rune" onclick="gameManager.chooseRune(air)"></div>
+            <div class="runes">
+                <div class="rune-showroom" onclick="gameManager.chooseRune(fire)">
+                    <h3>Fire</h3>
+                    <span class="rune-stats">
+                        <img src="fire.png" alt="fire" width="150">
+                        <span class="fire-rune-stats"></span>
+                    </span>
+                </div>
+                <div class="rune-showroom" onclick="gameManager.chooseRune(water)">
+                    <h3>Water</h3>
+                    <span class="rune-stats">
+                        <img src="water.png" alt="water" width="150">
+                        <span class="water-rune-stats"></span>
+                    </span>
+                </div>
+                <div class="rune-showroom" onclick="gameManager.chooseRune(earth)">
+                    <h3>Earth</h3>
+                    <span class="rune-stats">
+                        <img src="earth.png" alt="earth" width="150">
+                        <span class="earth-rune-stats"></span>
+                    </span>
+                </div>
+                <div class="rune-showroom" onclick="gameManager.chooseRune(air)">
+                    <h3>Air</h3>
+                    <span class="rune-stats">
+                        <img src="air.png" alt="air" width="150">
+                        <span class="air-rune-stats"></span>
+                    </span>
+                </div>
+            </div>
 
 
         </div>
@@ -100,6 +126,9 @@
                     <span class="player-info-skill"></span>
                     <span class="player-info-attack"></span>
                     <span class="opponent-info-attack"></span>
+                    
+                </div>
+                <div class="rune-info">
                     
                 </div>
             </div>

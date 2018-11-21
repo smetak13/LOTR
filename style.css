@@ -13,7 +13,7 @@ body {
 h1 {
     color: rgb(236, 140, 13);
     text-shadow: 2px 1px 1px black;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     letter-spacing: 1px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 35px;
@@ -28,11 +28,12 @@ header {
 h2 {
     text-align: left;
     margin-top: 0px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 .center {
     text-align: center;
+    margin-bottom: 30px;
 }
 
 h3 {
@@ -52,7 +53,7 @@ h5 {
     margin: 0px;
 }
 
-.characters {
+.characters, .runes{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
@@ -63,12 +64,21 @@ h5 {
     padding-bottom: 10px;
 }
 
-.character:hover {
+.rune-showroom {
+    padding-bottom: 40px;
+}
+
+.active-rune {
+    padding: 5px;
+    padding-bottom: 15px;
+}
+
+.character:hover, .rune-showroom:hover, .active-rune:hover {
     background-color: rgba(97, 96, 96, 0.144);
     cursor: pointer;
 }
 
-.stats {
+.stats, .rune-stats {
     display: grid;
     grid-template-columns: 2fr 5fr;
     margin: auto;
@@ -84,7 +94,7 @@ h5 {
 
 .battlefield {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3fr 1fr;
     width: 60%;
     margin: auto;
     margin-top: 0px;
@@ -147,7 +157,7 @@ button:hover {
 }
 
 #first-button {
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 .button-arena {
@@ -155,6 +165,12 @@ button:hover {
     height: 45px;
     width: 130px;
     font-size: 16px;
+}
+
+#rune-button {
+    height: 40px;
+    width: 100px;
+    font-size: 14px;
 }
 
 .attack {

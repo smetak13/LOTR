@@ -17,6 +17,7 @@ const gameManager = {
     playerInfoSkill: '',
     playerInfoAttack: '',
     opponentInfoAttack: '',
+    runeInfo: '',
     manaInfo: '',
     manaSkillInfo: '',
     manaButton: '',
@@ -38,6 +39,7 @@ const gameManager = {
         this.playerInfoSkill = document.querySelector('.player-info-skill');
         this.playerInfoAttack = document.querySelector('.player-info-attack');
         this.opponentInfoAttack = document.querySelector('.opponent-info-attack');
+        this.runeInfo = document.querySelector('.rune-info');
         this.manaInfo = document.querySelector('.mana-info');
         this.manaSkillInfo = document.querySelector('.mana-skill-info');
         this.manaButton = document.getElementById('mana-button');
@@ -52,6 +54,7 @@ const gameManager = {
 
     chooseRune(rune) {
         this.activeRune = rune;
+        this.renderRuneStats();
         this.selectContent(difficulty);
     },
 
@@ -101,6 +104,10 @@ const gameManager = {
     renderOpponentStats() {
         return this.opponent.innerHTML = '<h2> ' + this.activeEnemy.name + ' </h2><div class="stats-arena"><img src="./enemies/' + this.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeEnemy.attack + '</li><li><b>Health:</b> ' + this.activeEnemy.health + '</li><li><b>Agility:</b> ' + this.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + this.activeEnemy.vulnerability + '</li></ul></div>';
     },
+
+    renderRuneStats() {
+        return this.runeInfo.innerHTML = '<div class="active-rune"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '.png" width="100"></div>';
+    }
 
 }
 

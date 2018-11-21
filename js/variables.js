@@ -18,6 +18,16 @@ let aragornStats = document.querySelector('.aragorn-stats');
 let gimliStats = document.querySelector('.gimli-stats');
 let gandalfStats = document.querySelector('.gandalf-stats');
 
+let fireRuneStats = document.querySelector('.fire-rune-stats');
+let waterRuneStats = document.querySelector('.water-rune-stats');
+let earthRuneStats = document.querySelector('.earth-rune-stats');
+let airRuneStats = document.querySelector('.air-rune-stats');
+
+fireRuneStats.innerHTML = '<ul><li>' + fire.description + '</li></ul>'
+waterRuneStats.innerHTML = '<ul><li>' + water.description + '</li></ul>'
+earthRuneStats.innerHTML = '<ul><li>' + earth.description + '</li></ul>'
+airRuneStats.innerHTML = '<ul><li>' + air.description + '</li></ul>'
+
 frodoStats.innerHTML = '<ul><li><b>Attack:</b> ' + frodo.attack + '</li><li><b>Health:</b> ' + frodo.health + '</li><li><b>Agility:</b> ' + frodo.agility + '</li><li> <b>' + frodo.skills.skill1.name + ':</b> ' + frodo.skills.skill1.description + '</li><li> <b>' + frodo.skills.skill2.name + ':</b> ' + frodo.skills.skill2.description + '</li></ul>';
 samStats.innerHTML = '<ul><li><b>Attack:</b> ' + sam.attack + '</li><li><b>Health:</b> ' + sam.health + '</li><li><b>Agility:</b> ' + sam.agility + '</li><li> <b>' + sam.skills.skill1.name + ':</b> ' + sam.skills.skill1.description + '</li><li> <b>' + sam.skills.skill2.name + ':</b> ' + sam.skills.skill2.description + '</li></ul>';
 legolasStats.innerHTML = '<ul><li><b>Attack:</b> ' + legolas.attack + '</li><li><b>Health:</b> ' + legolas.health + '</li><li><b>Agility:</b> ' + legolas.agility + '</li><li> <b>' + legolas.skills.skill1.name + ':</b> ' + legolas.skills.skill1.description + '</li><li> <b>' + legolas.skills.skill2.name + ':</b> ' + legolas.skills.skill2.description + '</li></ul>';
