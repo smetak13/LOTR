@@ -106,7 +106,11 @@ const gameManager = {
     },
 
     renderRuneStats() {
-        return this.runeInfo.innerHTML = '<div class="active-rune"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '.png" width="100"></div>';
+        return this.runeInfo.innerHTML = '<div class="active-rune" onclick="useRune()"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '.png" width="100"><h6>Use by click</h6></div>';
+    },
+
+    renderPassiveRuneStats() {
+        return this.runeInfo.innerHTML = '<div class="passive-rune"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '-dead.png" width="100"><h6>Rune is dead</h6></div>';
     }
 
 }

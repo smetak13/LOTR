@@ -6,7 +6,50 @@ class Rune {
     }
 }
 
-const fire = new Rune('Fire', 'Deals 65 damage for each commenced round.');
+const fire = new Rune('Fire', 'Deals 80 damage for each commenced round.');
 const water = new Rune('Water', 'Takes 40 health from your opponent for each round and adds it to your health.');
-const air = new Rune('Air', 'Regenerates 70 health for each commenced round.');
+const air = new Rune('Air', 'Regenerates 90 health for each commenced round.');
 const earth = new Rune('Earth', 'After the character dies, it is ressurected and continues with 650 health.');
+
+
+function useRune() {
+    
+    gameManager.manaInfo.innerHTML = '<p></p>';
+    gameManager.manaSkillInfo.innerHTML = '<p></p>';
+    gameManager.opponentInfoAttack.innerHTML = '<p></p>';
+    gameManager.playerInfoAttack.innerHTML = '<p></p>';
+    gameManager.playerInfoSkill.innerHTML = '<p></p>';
+
+    switch (gameManager.activeRune.name) {
+        case 'Fire':
+            let damage = 80 * gameManager.round;
+            gameManager.activeEnemy.health -= damage;
+            gameManager.manaInfo.innerHTML = '<p>Fire rune caused ' + damage + ' damage to your opponent</p>'
+            gameManager.renderOpponentStats();
+
+            if (gameManager.activeEnemy.health <= 0) {
+                gameManager.activeEnemy.health = 0;
+                gameManager.playerResult.innerHTML = gameManager.renderPlayerStats();
+                gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
+                gameManager.opponentResult.setAttribute('id', 'dead');
+                gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
+                return gameManager.selectContent(result);
+            }
+            break;
+        case 'Air':
+            gameManager.regenerationCount = gameManager.basicHealth - gameManager.activeCharacter.health;
+            if (gameManager.regenerationCount > 90 * gameManager.round) {
+                gameManager.regenerationCount = 90 * gameManager.round;
+            }
+            gameManager.activeCharacter.health += 90 * gameManager.round;
+            if (gameManager.activeCharacter.health > gameManager.basicHealth) {
+                gameManager.activeCharacter.health = gameManager.basicHealth;
+            }
+            gameManager.renderPlayerStats();
+            if (gameManager.regenerationCount > 0) {
+                gameManager.manaInfo.innerHTML = '<p>Air rune regenerated ' + gameManager.regenerationCount + ' health.</p>';
+            }
+    }
+
+    gameManager.renderPassiveRuneStats();
+}

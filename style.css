@@ -48,7 +48,7 @@ h4 {
     font-size: 19px;
 }
 
-h5 {
+h5, h6 {
     padding: 0px;
     margin: 0px;
 }
@@ -69,6 +69,11 @@ h5 {
 }
 
 .active-rune {
+    padding: 5px;
+    padding-bottom: 15px;
+}
+
+.passive-rune {
     padding: 5px;
     padding-bottom: 15px;
 }
@@ -136,8 +141,8 @@ img {
 }
 
 button {
-    background-color: rgb(25, 53, 61);
-    color: rgb(212, 209, 209);
+    background-color: rgb(236, 139, 13);
+    color: rgb(0, 0, 0);
     width: 125px;
     height: 60px;
     font-size: 18px;
@@ -151,7 +156,6 @@ button {
 }
 
 button:hover {
-    background-color: rgb(33, 75, 87);
     font-weight: bold;
     cursor: pointer;
 }

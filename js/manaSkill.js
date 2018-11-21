@@ -17,6 +17,7 @@ const manaSkills = [regeneration, bloodsucker, craze, reflection];
 function regenerateMana() {
 
     gameManager.round += 1;
+    gameManager.roundsCounter.innerHTML = '<h5>Round: ' + gameManager.round + '</h5>'
 
     if (gameManager.manaButton.innerHTML==='Mana Attack') {
         return manaAttack();
