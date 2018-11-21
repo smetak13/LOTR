@@ -69,6 +69,8 @@ const gameManager = {
         }
 
         this.renderOpponentStats();
+        //body.style.backgroundImage = 'url(map.svg)';
+        //body.style.backgroundColor = 'rgba(255, 255, 255, 0.147)';
         this.selectContent(arena);
     },
 
@@ -77,6 +79,7 @@ const gameManager = {
         difficulty.style.display = 'none';
         arena.style.display = 'none';
         result.style.display = 'none';
+        campaign.style.display = 'none';
         page.style.display = 'block';
     },
 

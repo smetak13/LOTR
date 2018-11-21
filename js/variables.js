@@ -1,6 +1,9 @@
+let body = document.querySelector('body');
 let menu = document.querySelector('.menu');
 let difficulty = document.querySelector('.difficulty');
 difficulty.style.display = 'none';
+let campaign = document.querySelector('.campaign');
+campaign.style.display = 'none';
 let arena = document.querySelector('.arena');
 arena.style.display = 'none';
 let result = document.querySelector('.result');
