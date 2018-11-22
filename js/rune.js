@@ -8,7 +8,7 @@ class Rune {
 
 const fire = new Rune('Fire', 'Deals 80 damage for each commenced round.');
 const water = new Rune('Water', 'Takes 40 health from your opponent for each round and adds it to your health.');
-const air = new Rune('Air', 'Regenerates 90 health for each commenced round.');
+const air = new Rune('Air', 'Regenerates 80 health for each commenced round.');
 const earth = new Rune('Earth', 'After the character dies, he is ressurected and continues with 450 health.');
 
 
@@ -40,10 +40,10 @@ function useRune() {
             break;
         case 'Air':
             gameManager.regenerationCount = gameManager.basicHealth - gameManager.activeCharacter.health;
-            if (gameManager.regenerationCount > 90 * gameManager.round) {
-                gameManager.regenerationCount = 90 * gameManager.round;
+            if (gameManager.regenerationCount > 80 * gameManager.round) {
+                gameManager.regenerationCount = 80 * gameManager.round;
             }
-            gameManager.activeCharacter.health += 90 * gameManager.round;
+            gameManager.activeCharacter.health += 80 * gameManager.round;
             if (gameManager.activeCharacter.health > gameManager.basicHealth) {
                 gameManager.activeCharacter.health = gameManager.basicHealth;
             }

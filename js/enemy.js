@@ -11,19 +11,19 @@ class Enemy {
 };
 
 
-const greatSpider = new Enemy('Great Spider', 'easy', 'Sam', 230, 3900, 17);
-const orc = new Enemy('Orc', 'easy', 'Gimli', 250, 3800, 12);
-const warg = new Enemy('Warg', 'easy', 'Gimli', 240, 3840, 22);
-const gollum = new Enemy('Gollum', 'easy', 'Sam', 220, 4060, 15);
-const orcLeader = new Enemy('Orc Leader', 'medium', 'Gimli', 330, 4220, 13);
-const nazgul = new Enemy('Nazgul', 'medium', 'Aragorn', 370, 4340, 20);
-const shelob = new Enemy('Shelob', 'medium', 'Sam', 310, 4380, 19);
-const troll = new Enemy('Troll', 'medium', 'Legolas', 380, 4420, 8);
-const oliphant = new Enemy('Oliphant', 'medium', 'Legolas', 360, 4500, 9);
-const saruman = new Enemy('Saruman', 'hard', 'Gandalf', 350, 5140, 12);
-const balrog = new Enemy('Balrog', 'hard', 'Gandalf', 490, 4840, 8);
-const kingOfTheDead = new Enemy('King of the Dead', 'hard', 'Aragorn', 370, 5220, 15);
-const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 5450, 10);
+const greatSpider = new Enemy('Great Spider', 'easy', 'Sam', 230, 4100, 17);
+const orc = new Enemy('Orc', 'easy', 'Gimli', 250, 4000, 12);
+const warg = new Enemy('Warg', 'easy', 'Gimli', 240, 4040, 22);
+const gollum = new Enemy('Gollum', 'easy', 'Sam', 220, 4260, 15);
+const orcLeader = new Enemy('Orc Leader', 'medium', 'Gimli', 330, 4420, 13);
+const nazgul = new Enemy('Nazgul', 'medium', 'Aragorn', 370, 4540, 20);
+const shelob = new Enemy('Shelob', 'medium', 'Sam', 310, 4580, 19);
+const troll = new Enemy('Troll', 'medium', 'Legolas', 380, 4620, 8);
+const oliphant = new Enemy('Oliphant', 'medium', 'Legolas', 360, 4700, 9);
+const saruman = new Enemy('Saruman', 'hard', 'Gandalf', 350, 5340, 12);
+const balrog = new Enemy('Balrog', 'hard', 'Gandalf', 490, 5040, 8);
+const kingOfTheDead = new Enemy('King of the Dead', 'hard', 'Aragorn', 370, 5440, 15);
+const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 5750, 10);
 
 const easyEnemies = [greatSpider, orc, warg, gollum];
 const mediumEnemies = [orcLeader, nazgul, shelob, troll, oliphant];
