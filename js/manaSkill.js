@@ -141,7 +141,7 @@ function manaAttack() {
         let offsetDamage = gameManager.getRandomNumber(20, 120);
         basicDamage += offsetDamage;
         gameManager.activeEnemy.health -= basicDamage;
-        gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent´s attack was reflected back at him and caused ' + basicDamage + ' damage.';
+        gameManager.opponentInfoAttack.innerHTML = '<p>Your opponent´s attack was reflected and caused ' + basicDamage + ' damage.';
         gameManager.renderOpponentStats();
         if (gameManager.activeEnemy.health <= 0) {
             gameManager.activeEnemy.health = 0;

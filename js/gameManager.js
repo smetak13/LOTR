@@ -54,6 +54,10 @@ const gameManager = {
 
     chooseRune(rune) {
         this.activeRune = rune;
+        if (this.activeRune.name === 'Earth') {
+            this.runeInfo.innerHTML = '<div class="passive-rune"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '.png" width="100"><h6>Rune is active</h6></div>';
+            return this.selectContent(difficulty);
+        }
         this.renderRuneStats();
         this.selectContent(difficulty);
     },
@@ -106,7 +110,7 @@ const gameManager = {
     },
 
     renderRuneStats() {
-        return this.runeInfo.innerHTML = '<div class="active-rune" onclick="useRune()"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '.png" width="100"><h6>Use by click</h6></div>';
+        return this.runeInfo.innerHTML = '<div class="active-rune" onclick="useRune()"><h5>' + this.activeRune.name + '</h5><img src="' + this.activeRune.name.toLowerCase() + '.png" width="100"><h6>Activate rune</h6></div>';
     },
 
     renderPassiveRuneStats() {

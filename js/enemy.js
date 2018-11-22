@@ -11,19 +11,19 @@ class Enemy {
 };
 
 
-const greatSpider = new Enemy('Great Spider', 'easy', 'Sam', 230, 3700, 17);
-const orc = new Enemy('Orc', 'easy', 'Gimli', 250, 3600, 12);
-const warg = new Enemy('Warg', 'easy', 'Gimli', 240, 3640, 22);
-const gollum = new Enemy('Gollum', 'easy', 'Sam', 220, 3860, 15);
-const orcLeader = new Enemy('Orc Leader', 'medium', 'Gimli', 330, 4020, 13);
-const nazgul = new Enemy('Nazgul', 'medium', 'Aragorn', 370, 4140, 20);
-const shelob = new Enemy('Shelob', 'medium', 'Sam', 310, 4180, 19);
-const troll = new Enemy('Troll', 'medium', 'Legolas', 380, 4220, 8);
-const oliphant = new Enemy('Oliphant', 'medium', 'Legolas', 360, 4300, 9);
-const saruman = new Enemy('Saruman', 'hard', 'Gandalf', 350, 4940, 12);
-const balrog = new Enemy('Balrog', 'hard', 'Gandalf', 490, 4640, 8);
-const kingOfTheDead = new Enemy('King of the Dead', 'hard', 'Aragorn', 370, 5020, 15);
-const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 5250, 10);
+const greatSpider = new Enemy('Great Spider', 'easy', 'Sam', 230, 3900, 17);
+const orc = new Enemy('Orc', 'easy', 'Gimli', 250, 3800, 12);
+const warg = new Enemy('Warg', 'easy', 'Gimli', 240, 3840, 22);
+const gollum = new Enemy('Gollum', 'easy', 'Sam', 220, 4060, 15);
+const orcLeader = new Enemy('Orc Leader', 'medium', 'Gimli', 330, 4220, 13);
+const nazgul = new Enemy('Nazgul', 'medium', 'Aragorn', 370, 4340, 20);
+const shelob = new Enemy('Shelob', 'medium', 'Sam', 310, 4380, 19);
+const troll = new Enemy('Troll', 'medium', 'Legolas', 380, 4420, 8);
+const oliphant = new Enemy('Oliphant', 'medium', 'Legolas', 360, 4500, 9);
+const saruman = new Enemy('Saruman', 'hard', 'Gandalf', 350, 5140, 12);
+const balrog = new Enemy('Balrog', 'hard', 'Gandalf', 490, 4840, 8);
+const kingOfTheDead = new Enemy('King of the Dead', 'hard', 'Aragorn', 370, 5220, 15);
+const sauron = new Enemy('Sauron', 'hard', 'Frodo', 360, 5450, 10);
 
 const easyEnemies = [greatSpider, orc, warg, gollum];
 const mediumEnemies = [orcLeader, nazgul, shelob, troll, oliphant];
@@ -58,6 +58,16 @@ function enemyAttack() {
     gameManager.renderPlayerStats();
 
     if (gameManager.activeCharacter.health <= 0) {
+
+        if (gameManager.activeRune.name === 'Earth' && gameManager.activeRune.status === 'active') {
+            gameManager.activeCharacter.health = 450;
+            gameManager.renderPlayerStats();
+            gameManager.opponentInfoAttack.innerHTML = '<p>Earth rune ressurected you and you continue with ' + gameManager.activeCharacter.health + ' health.</p>';
+            gameManager.activeRune.status = 'passive';
+            gameManager.renderPassiveRuneStats();
+            return;
+        }
+
         if (gameManager.activeCharacter.skills.skill2.name==='Mithril shirt') {
             if (gameManager.getRandomNumber(1, 10) <= 5) {
                 gameManager.activeCharacter.health = 700;
