@@ -98,7 +98,7 @@ function enemyAttack() {
             gameManager.playerResult.setAttribute('id', 'dead');
             gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
             gameManager.resultStats.innerHTML = '<h4>You lose in ' + gameManager.round + ' rounds.</h4>';
-            gameManager.selectContent(result);
+            gameManager.selectContent(gameManager.result);
     }
 
 };

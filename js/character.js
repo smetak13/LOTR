@@ -183,7 +183,7 @@ function characterAttack() {
         gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
         gameManager.opponentResult.setAttribute('id', 'dead');
         gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
-        return gameManager.selectContent(result);
+        return gameManager.selectContent(gameManager.result);
     }
 
     

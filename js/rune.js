@@ -35,7 +35,7 @@ function useRune() {
                 gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
                 gameManager.opponentResult.setAttribute('id', 'dead');
                 gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
-                return gameManager.selectContent(result);
+                return gameManager.selectContent(gameManager.result);
             }
             break;
         case 'Air':
@@ -64,7 +64,7 @@ function useRune() {
                 gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
                 gameManager.opponentResult.setAttribute('id', 'dead');
                 gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
-                return gameManager.selectContent(result);
+                return gameManager.selectContent(gameManager.result);
             }
 
             gameManager.regenerationCount = gameManager.basicHealth - damage;

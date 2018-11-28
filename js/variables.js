@@ -1,42 +1,6 @@
-let body = document.querySelector('body');
-let menu = document.querySelector('.menu');
-let rune = document.querySelector('.rune');
-rune.style.display = 'none';
-let difficulty = document.querySelector('.difficulty');
-difficulty.style.display = 'none';
-let campaign = document.querySelector('.campaign');
-campaign.style.display = 'none';
-let arena = document.querySelector('.arena');
-arena.style.display = 'none';
-let result = document.querySelector('.result');
-result.style.display = 'none';
-let audioIcon = document.getElementById('audio-icon');
-let frodoStats = document.querySelector('.frodo-stats');
-let samStats = document.querySelector('.sam-stats');
-let legolasStats = document.querySelector('.legolas-stats');
-let aragornStats = document.querySelector('.aragorn-stats');
-let gimliStats = document.querySelector('.gimli-stats');
-let gandalfStats = document.querySelector('.gandalf-stats');
 
-let fireRuneStats = document.querySelector('.fire-rune-stats');
-let waterRuneStats = document.querySelector('.water-rune-stats');
-let earthRuneStats = document.querySelector('.earth-rune-stats');
-let airRuneStats = document.querySelector('.air-rune-stats');
-
-fireRuneStats.innerHTML = '<ul><li>' + fire.description + '</li></ul>'
-waterRuneStats.innerHTML = '<ul><li>' + water.description + '</li></ul>'
-earthRuneStats.innerHTML = '<ul><li>' + earth.description + '</li></ul>'
-airRuneStats.innerHTML = '<ul><li>' + air.description + '</li></ul>'
-
-frodoStats.innerHTML = '<ul><li><b>Attack:</b> ' + frodo.attack + '</li><li><b>Health:</b> ' + frodo.health + '</li><li><b>Agility:</b> ' + frodo.agility + '</li><li> <b>' + frodo.skills.skill1.name + ':</b> ' + frodo.skills.skill1.description + '</li><li> <b>' + frodo.skills.skill2.name + ':</b> ' + frodo.skills.skill2.description + '</li></ul>';
-samStats.innerHTML = '<ul><li><b>Attack:</b> ' + sam.attack + '</li><li><b>Health:</b> ' + sam.health + '</li><li><b>Agility:</b> ' + sam.agility + '</li><li> <b>' + sam.skills.skill1.name + ':</b> ' + sam.skills.skill1.description + '</li><li> <b>' + sam.skills.skill2.name + ':</b> ' + sam.skills.skill2.description + '</li></ul>';
-legolasStats.innerHTML = '<ul><li><b>Attack:</b> ' + legolas.attack + '</li><li><b>Health:</b> ' + legolas.health + '</li><li><b>Agility:</b> ' + legolas.agility + '</li><li> <b>' + legolas.skills.skill1.name + ':</b> ' + legolas.skills.skill1.description + '</li><li> <b>' + legolas.skills.skill2.name + ':</b> ' + legolas.skills.skill2.description + '</li></ul>';
-aragornStats.innerHTML = '<ul><li><b>Attack:</b> ' + aragorn.attack + '</li><li><b>Health:</b> ' + aragorn.health + '</li><li><b>Agility:</b> ' + aragorn.agility + '</li><li> <b>' + aragorn.skills.skill1.name + ':</b> ' + aragorn.skills.skill1.description + '</li><li> <b>' + aragorn.skills.skill2.name + ':</b> ' + aragorn.skills.skill2.description + '</li></ul>';
-gimliStats.innerHTML = '<ul><li><b>Attack:</b> ' + gimli.attack + '</li><li><b>Health:</b> ' + gimli.health + '</li><li><b>Agility:</b> ' + gimli.agility + '</li><li> <b>' + gimli.skills.skill1.name + ':</b> ' + gimli.skills.skill1.description + '</li><li> <b>' + gimli.skills.skill2.name + ':</b> ' + gimli.skills.skill2.description + '</li></ul>';
-gandalfStats.innerHTML = '<ul><li><b>Attack:</b> ' + gandalf.attack + '</li><li><b>Health:</b> ' + gandalf.health + '</li><li><b>Agility:</b> ' + gandalf.agility + '</li><li> <b>' + gandalf.skills.skill1.name + ':</b> ' + gandalf.skills.skill1.description + '</li><li> <b>' + gandalf.skills.skill2.name + ':</b> ' + gandalf.skills.skill2.description + '</li></ul>';
-
-
-document.addEventListener('DOMContentLoaded', playAudio);
+document.addEventListener('DOMContentLoaded', gameManager.init());
+window.addEventListener('load', playAudio);
 
 
 const soundtrack = [
@@ -61,17 +25,12 @@ const soundtrack = [
     new Audio('./audio/18.mp3'),  
      
 ]
-let activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length)]
-
-
+let activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length - 1)]
 let audioStatus;
 
 function playAudio() {
 
-    if (activeAudio === undefined) {
-        activeAudio = soundtrack[gameManager.getRandomNumber(0, soundtrack.length)];
-        return playAudio();
-    }
+    let audioIcon = document.getElementById('audio-icon');
 
     if (audioStatus === undefined) {
         activeAudio.pause();

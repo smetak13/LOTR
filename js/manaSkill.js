@@ -43,19 +43,10 @@ function regenerateMana() {
 
 function generateManaSkill() {
     if (gameManager.activeManaSkill.name==='Mana Skill') {
-        gameManager.activeManaSkill = manaSkills[gameManager.getRandomNumber(0, manaSkills.length)];
-        if (gameManager.activeManaSkill===undefined) {
-            gameManager.activeManaSkill = { 
-                name: 'Mana Skill',
-                description: 'You need to generate 7 mana points to get a Mana Skill.'
-            }
-            return generateManaSkill();
-        } else {
-            gameManager.manaSkillInfo.innerHTML = '<p>You gained new Mana Skill: ' + gameManager.activeManaSkill.name + '</p>';
-            gameManager.renderPlayerStats();
-        }
+        gameManager.activeManaSkill = manaSkills[gameManager.getRandomNumber(0, manaSkills.length - 1)];
+        gameManager.manaSkillInfo.innerHTML = '<p>You gained new Mana Skill: ' + gameManager.activeManaSkill.name + '</p>';
+        gameManager.renderPlayerStats();
     }
-    else return;
 }
 
 
@@ -149,7 +140,7 @@ function manaAttack() {
             gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
             gameManager.opponentResult.setAttribute('id', 'dead');
             gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
-            return gameManager.selectContent(result);
+            return gameManager.selectContent(gameManager.result);
         } else {
             gameManager.activeManaSkill = {
                 name: 'Mana Skill',
@@ -167,7 +158,7 @@ function manaAttack() {
         gameManager.opponentResult.innerHTML = gameManager.renderOpponentStats();
         gameManager.opponentResult.setAttribute('id', 'dead');
         gameManager.resultStats.innerHTML = '<h4>You win in ' + gameManager.round + ' rounds.</h4>';
-        return gameManager.selectContent(result);
+        return gameManager.selectContent(gameManager.result);
     }
 
 
