@@ -5,142 +5,159 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>LOTR web game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 <body>
     <header>
         <h1>Lord of the Rings Web Game</h1>
         <img onclick="playAudio()" id="audio-icon" src="img/audioIcon.svg" width="40">
+        </div>
     </header>
 
     <section>
-        <div class="menu">
-            <h2 class="center">Choose a character</h2>
-            <div class="characters">
-                <div class="character" onclick="gameManager.chooseCharacter(frodo)">
-                    <h3>Frodo</h3>
-                    <span class="stats">
-                        <img src="img/characters/frodo.png" alt="Frodo">
-                        <span class="frodo-stats"></span>
-                    </span>
-                </div>
-                <div class="character" onclick="gameManager.chooseCharacter(sam)">
-                    <h3>Sam</h3>
-                    <span class="stats">
-                        <img src="img/characters/sam.png" alt="Sam">
-                        <span class="sam-stats"></span>
-                    </span>
-                </div>
-                <div class="character" onclick="gameManager.chooseCharacter(legolas)">
-                    <h3>Legolas</h3>
-                    <span class="stats">
-                        <img src="img/characters/legolas.png" alt="Legolas">
-                        <span class="legolas-stats"></span>
-                    </span>
-                </div>
-                <div class="character" onclick="gameManager.chooseCharacter(aragorn)">
-                    <h3>Aragorn</h3>
-                    <span class="stats">
-                        <img src="img/characters/aragorn.png" alt="Aragorn">
-                        <span class="aragorn-stats"></span>
-                    </span>
-                </div>
-                <div class="character" onclick="gameManager.chooseCharacter(gimli)">
-                    <h3>Gimli</h3>
-                    <span class="stats">
-                        <img src="img/characters/gimli.png" alt="Gimli">
-                        <span class="gimli-stats"></span>
-                    </span>
-                </div>
-                <div class="character" onclick="gameManager.chooseCharacter(gandalf)">
-                    <h3>Gandalf</h3>
-                    <span class="stats">
-                        <img src="img/characters/gandalf.png" alt="Gandalf">
-                        <span class="gandalf-stats"></span>
-                    </span>
-                </div>
-                
-            </div>
-
-        </div>
-        <div class="rune">
-            <h2 class="center">Choose a rune</h2>
-            <div class="runes">
-                <div class="rune-showroom" onclick="gameManager.chooseRune(fire)">
-                    <h3>Fire</h3>
-                    <span class="rune-stats">
-                        <img src="img/fire.png" alt="fire" width="150">
-                        <span class="fire-rune-stats"></span>
-                    </span>
-                </div>
-                <div class="rune-showroom" onclick="gameManager.chooseRune(water)">
-                    <h3>Water</h3>
-                    <span class="rune-stats">
-                        <img src="img/water.png" alt="water" width="150">
-                        <span class="water-rune-stats"></span>
-                    </span>
-                </div>
-                <div class="rune-showroom" onclick="gameManager.chooseRune(earth)">
-                    <h3>Earth</h3>
-                    <span class="rune-stats">
-                        <img src="img/earth.png" alt="earth" width="150">
-                        <span class="earth-rune-stats"></span>
-                    </span>
-                </div>
-                <div class="rune-showroom" onclick="gameManager.chooseRune(air)">
-                    <h3>Air</h3>
-                    <span class="rune-stats">
-                        <img src="img/air.png" alt="air" width="150">
-                        <span class="air-rune-stats"></span>
-                    </span>
+        <div class="container-fluid">
+            <div class="menu">
+                <h2 class="center">Choose a character</h2>
+                <div class="characters">
+                    <div class="row">
+                        <div class="character col-lg-6" onclick="gameManager.chooseCharacter(frodo)">
+                            <h3>Frodo</h3>
+                            <span class="stats">
+                                <img src="img/characters/frodo.png" alt="Frodo">
+                                <span class="frodo-stats"></span>
+                            </span>
+                        </div>
+                        <div class="character col-lg-6" onclick="gameManager.chooseCharacter(sam)">
+                            <h3>Sam</h3>
+                            <span class="stats">
+                                <img src="img/characters/sam.png" alt="Sam">
+                                <span class="sam-stats"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="character col-lg-6" onclick="gameManager.chooseCharacter(legolas)">
+                            <h3>Legolas</h3>
+                            <span class="stats">
+                                <img src="img/characters/legolas.png" alt="Legolas">
+                                <span class="legolas-stats"></span>
+                            </span>
+                        </div>
+                        <div class="character col-lg-6" onclick="gameManager.chooseCharacter(aragorn)">
+                            <h3>Aragorn</h3>
+                            <span class="stats">
+                                <img src="img/characters/aragorn.png" alt="Aragorn">
+                                <span class="aragorn-stats"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="character col-lg-6" onclick="gameManager.chooseCharacter(gimli)">
+                            <h3>Gimli</h3>
+                            <span class="stats">
+                                <img src="img/characters/gimli.png" alt="Gimli">
+                                <span class="gimli-stats"></span>
+                            </span>
+                        </div>
+                        <div class="character col-lg-6" onclick="gameManager.chooseCharacter(gandalf)">
+                            <h3>Gandalf</h3>
+                            <span class="stats">
+                                <img src="img/characters/gandalf.png" alt="Gandalf">
+                                <span class="gandalf-stats"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-        </div>
-
-        <div class="difficulty">
-            <h2 class="center">Choose difficulty</h2>
-            <button id="first-button" onclick="gameManager.chooseDifficulty('easy')">Easy</button>
-            <button onclick="gameManager.chooseDifficulty('medium')">Medium</button>
-            <button onclick="gameManager.chooseDifficulty('hard')">Hard</button>
-        </div>
-
-        <div class="campaign">
-            <div class="campaign-map"></div>
-
-        </div>
-
-        <div class="arena">
             
-            <div class="player"></div>
-            <div class="battlefield">
-                <div class="attack">
-                    <span id="rounds-counter"></span>
-                    <button class="button-arena" onclick="characterAttack()">Attack</button>
-                    <button id="mana-button" class="button-arena" onclick="regenerateMana()">Regenerate</button>
+            <div class="rune">
+                <h2 class="center">Choose a rune</h2>
+                <div class="runes">
+                    <div class="row">
+                        <div class="rune-showroom col-lg-6" onclick="gameManager.chooseRune(fire)">
+                            <h3>Fire</h3>
+                            <span class="rune-stats">
+                                <img src="img/fire.png" alt="fire" width="150">
+                                <span class="fire-rune-stats"></span>
+                            </span>
+                        </div>
+                        <div class="rune-showroom col-lg-6" onclick="gameManager.chooseRune(water)">
+                            <h3>Water</h3>
+                            <span class="rune-stats">
+                                <img src="img/water.png" alt="water" width="150">
+                                <span class="water-rune-stats"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="rune-showroom col-lg-6" onclick="gameManager.chooseRune(earth)">
+                            <h3>Earth</h3>
+                            <span class="rune-stats">
+                                <img src="img/earth.png" alt="earth" width="150">
+                                <span class="earth-rune-stats"></span>
+                            </span>
+                        </div>
+                        <div class="rune-showroom col-lg-6" onclick="gameManager.chooseRune(air)">
+                            <h3>Air</h3>
+                            <span class="rune-stats">
+                                <img src="img/air.png" alt="air" width="150">
+                                <span class="air-rune-stats"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="player-info">
-                    <span class="mana-info"></span>
-                    <span class="mana-skill-info"></span>
-                    <span class="player-info-skill"></span>
-                    <span class="player-info-attack"></span>
-                    <span class="opponent-info-attack"></span>
-                    
-                </div>
-                <div class="rune-info">
-                    
-                </div>
+
+
             </div>
-            <div class="opponent"></div>
-        
-        </div>
-        
-        <div class="result">
-            <div class="player-result"></div>
-            <p class="result-stats"></p>
-            <button id="new-game" onclick="gameManager.newGame()">New Game</button>
-            <div class="opponent-result"></div>
+
+            <div class="difficulty">
+                <h2 class="center">Choose difficulty</h2>
+                <button id="first-button" onclick="gameManager.chooseDifficulty('easy')">Easy</button>
+                <button onclick="gameManager.chooseDifficulty('medium')">Medium</button>
+                <button onclick="gameManager.chooseDifficulty('hard')">Hard</button>
+            </div>
+
+            <div class="campaign">
+                <div class="campaign-map"></div>
+
+            </div>
+
+            <div class="arena">
+                
+                <div class="player"></div>
+                <div class="battlefield row">
+                    <div class="attack col-md-2 col-lg-2">
+                        <div class="float-left">
+                            <span id="rounds-counter"></span>
+                            <button class="button-arena" onclick="characterAttack()">Attack</button>
+                            <button id="mana-button" class="button-arena" onclick="regenerateMana()">Regenerate</button>
+                        </div>
+                    </div>
+                    <div class="player-info col-md-7 col-lg-7">
+                        <span class="mana-info"></span>
+                        <span class="mana-skill-info"></span>
+                        <span class="player-info-skill"></span>
+                        <span class="player-info-attack"></span>
+                        <span class="opponent-info-attack"></span>
+                        
+                    </div>
+                    <div class="float-left rune-info col-md-3 col-lg-3">
+                        
+                    </div>
+                </div>
+                <div class="opponent"></div>
+            
+            </div>
+            
+            <div class="result">
+                <div class="player-result"></div>
+                <p class="result-stats"></p>
+                <button id="new-game" onclick="gameManager.newGame()">New Game</button>
+                <div class="opponent-result"></div>
+            </div>
         </div>
     </section>
     <script src="./js/character.js"></script>
@@ -149,5 +166,8 @@
     <script src="./js/rune.js"></script>
     <script src="./js/gameManager.js"></script>
     <script src="./js/variables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

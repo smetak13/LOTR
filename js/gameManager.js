@@ -79,7 +79,7 @@ const gameManager = {
     chooseRune(rune) {
         this.activeRune = rune;
         if (this.activeRune.name === 'Earth') {
-            this.runeInfo.innerHTML = '<div class="passive-rune"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '.png" width="100"><h6>Rune is active</h6></div>';
+            this.runeInfo.innerHTML = '<div class="passive-rune"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '.png" width="100"><p>Rune is active</p></div>';
             return this.selectContent(this.difficulty);
         }
         this.renderRuneStats();
@@ -124,15 +124,15 @@ const gameManager = {
     },
 
     renderOpponentStats() {
-        return this.opponent.innerHTML = '<h2> ' + this.activeEnemy.name + ' </h2><div class="stats-arena"><img src="img//enemies/' + this.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeEnemy.attack + '</li><li><b>Health:</b> ' + this.activeEnemy.health + '</li><li><b>Agility:</b> ' + this.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + this.activeEnemy.vulnerability + '</li></ul></div>';
+        return this.opponent.innerHTML = '<h2> ' + this.activeEnemy.name + ' </h2><div class="stats-arena"><img src="img/enemies/' + this.activeEnemy.name.toLowerCase() + '.png' + ' "><ul><li><b>Attack:</b> ' + this.activeEnemy.attack + '</li><li><b>Health:</b> ' + this.activeEnemy.health + '</li><li><b>Agility:</b> ' + this.activeEnemy.agility + '</li><li><b>Vulnerability:</b> ' + this.activeEnemy.vulnerability + '</li></ul></div>';
     },
 
     renderRuneStats() {
-        return this.runeInfo.innerHTML = '<div class="active-rune" onclick="useRune()"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '.png" width="100"><h6>Activate rune</h6></div>';
+        return this.runeInfo.innerHTML = '<div class="float-left active-rune" onclick="useRune()"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '.png" width="100"><p>Activate rune</p></div>';
     },
 
     renderPassiveRuneStats() {
-        return this.runeInfo.innerHTML = '<div class="passive-rune"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '-dead.png" width="100"><h6>Rune is dead</h6></div>';
+        return this.runeInfo.innerHTML = '<div class="float-left passive-rune"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '-dead.png" width="100"><p>Rune is dead</p></div>';
     }
 
 }
