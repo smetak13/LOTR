@@ -1,14 +1,27 @@
 class ManaSkill {
-    constructor(name, description) {
+    constructor(name, description, stats) {
         this.name = name;
         this.description = description;
+        this.stats = stats;
     }
 }
 
-const regeneration = new ManaSkill('Regeneration', 'Regenerate 40% of your basic health.');
-const bloodsucker = new ManaSkill('Bloodsucker', 'Your basic attack is increased by 150% and your health is increased by 100% of the damage dealt to your opponent.');
-const craze = new ManaSkill('Craze', 'Your basic attack is increased by 300% for one round.');
-const reflection = new ManaSkill('Reflection', 'your basic attack is increased by 150% and your opponent´s attack is reflected back at him in the next round.');
+const regeneration = new ManaSkill('Regeneration', 'Regenerate 40% of your basic health.', 
+    {
+        health: 0.4, 
+    });
+const bloodsucker = new ManaSkill('Bloodsucker', 'Your basic attack is increased by 150% and your health is increased by 100% of the damage dealt to your opponent.',
+    {
+        attack: 2.5,
+    });
+const craze = new ManaSkill('Craze', 'Your basic attack is increased by 300% for one round.',
+    {
+        attack: 4,
+    });
+const reflection = new ManaSkill('Reflection', 'your basic attack is increased by 150% and your opponent´s attack is reflected back at him in the next round.',
+    {
+        attack: 2.5,
+    });
 
 const manaSkills = [regeneration, bloodsucker, craze, reflection];
 
@@ -74,10 +87,10 @@ function manaAttack() {
     switch (gameManager.activeManaSkill.name) {
         case 'Regeneration':
             gameManager.regenerationCount = gameManager.basicHealth - gameManager.activeCharacter.health;
-            if (gameManager.regenerationCount > gameManager.basicHealth * 0.4) {
-                gameManager.regenerationCount = gameManager.basicHealth * 0.4;
+            if (gameManager.regenerationCount > gameManager.basicHealth * gameManager.activeManaSkill.stats.health) {
+                gameManager.regenerationCount = gameManager.basicHealth * gameManager.activeManaSkill.stats.health;
             }
-            gameManager.activeCharacter.health += gameManager.basicHealth * 0.4;
+            gameManager.activeCharacter.health += gameManager.basicHealth * gameManager.activeManaSkill.stats.health;
             if (gameManager.activeCharacter.health > gameManager.basicHealth) {
                 gameManager.activeCharacter.health = gameManager.basicHealth;
             }
@@ -87,13 +100,13 @@ function manaAttack() {
             
             break;
         case 'Craze':
-            basicDamage *= 4;
+            basicDamage *= gameManager.activeManaSkill.stats.attack;
             break;
         case 'Reflection':
-            basicDamage *= 2.5;
+            basicDamage *= gameManager.activeManaSkill.stats.attack;
             break;
         case 'Bloodsucker':
-            basicDamage *= 2.5;
+            basicDamage *= gameManager.activeManaSkill.stats.attack;
             break;
     }
 

@@ -1,15 +1,28 @@
 class Rune {
-    constructor(name, description, status = 'active') {
+    constructor(name, description, status = 'active', stats) {
         this.name = name;
         this.description = description;
         this.status = status;
+        this.stats = stats;
     }
 }
 
-const fire = new Rune('Fire', 'Deals 80 damage for each commenced round.');
-const water = new Rune('Water', 'Takes 40 health from your opponent for each round and adds it to your health.');
-const air = new Rune('Air', 'Regenerates 80 health for each commenced round.');
-const earth = new Rune('Earth', 'After the character dies, he is ressurected and continues with 450 health.');
+const fire = new Rune('Fire', 'Deals 80 damage for each commenced round.',
+    {
+        damage: 80,
+    });
+const water = new Rune('Water', 'Takes 40 health from your opponent for each round and adds it to your health.',
+    {
+        damage: 40,
+    });
+const air = new Rune('Air', 'Regenerates 80 health for each commenced round.',
+    {
+        health: 80,
+    });
+const earth = new Rune('Earth', 'After the character dies, he is ressurected and continues with 450 health.',
+    {
+        health: 450,
+    });
 
 
 function useRune() {
@@ -24,7 +37,7 @@ function useRune() {
 
     switch (gameManager.activeRune.name) {
         case 'Fire':
-            damage = 80 * gameManager.round;
+            damage = gameManager.activeRune.stats.damage * gameManager.round;
             gameManager.activeEnemy.health -= damage;
             gameManager.manaInfo.innerHTML = '<p>Fire rune caused ' + damage + ' damage to your opponent.</p>'
             gameManager.renderOpponentStats();
@@ -40,10 +53,10 @@ function useRune() {
             break;
         case 'Air':
             gameManager.regenerationCount = gameManager.basicHealth - gameManager.activeCharacter.health;
-            if (gameManager.regenerationCount > 80 * gameManager.round) {
-                gameManager.regenerationCount = 80 * gameManager.round;
+            if (gameManager.regenerationCount > gameManager.activeRune.stats.health * gameManager.round) {
+                gameManager.regenerationCount = gameManager.activeRune.stats.health * gameManager.round;
             }
-            gameManager.activeCharacter.health += 80 * gameManager.round;
+            gameManager.activeCharacter.health += gameManager.activeRune.stats.health * gameManager.round;
             if (gameManager.activeCharacter.health > gameManager.basicHealth) {
                 gameManager.activeCharacter.health = gameManager.basicHealth;
             }
@@ -53,7 +66,7 @@ function useRune() {
             }
             break;
         case 'Water':
-            damage = 40 * gameManager.round;
+            damage = gameManager.activeRune.stats.damage * gameManager.round;
             gameManager.activeEnemy.health -= damage;
             gameManager.manaInfo.innerHTML = '<p> Water rune caused ' + damage + ' damage to your opponent.';
             gameManager.renderOpponentStats();

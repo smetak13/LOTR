@@ -41,12 +41,12 @@ function enemyAttack() {
 
     if (gameManager.activeCharacter.skills.skill2.name==='You Shall Not Pass') {
         if (gameManager.activeEnemy.name==='Balrog') {
-            if (gameManager.getRandomNumber(1, 10) <= 6) {
-                basicDamage = 170;
+            if (gameManager.getRandomNumber(1, 100) <= gameManager.activeCharacter.skills.skill2.probability2) {
+                basicDamage = gameManager.activeCharacter.skills.skill2.damage;
             }
         } else {
-            if (gameManager.getRandomNumber(1, 10) <= 5) {
-                basicDamage = 170;
+            if (gameManager.getRandomNumber(1, 100) <= gameManager.activeCharacter.skills.skill2.probability1) {
+                basicDamage = gameManager.activeCharacter.skills.skill2.damage;
             }
         }
     };
@@ -60,7 +60,7 @@ function enemyAttack() {
     if (gameManager.activeCharacter.health <= 0) {
 
         if (gameManager.activeRune.name === 'Earth' && gameManager.activeRune.status === 'active') {
-            gameManager.activeCharacter.health = 450;
+            gameManager.activeCharacter.health = gameManager.activeRune.stats.health;
             gameManager.renderPlayerStats();
             gameManager.opponentInfoAttack.innerHTML = '<p>Earth rune ressurected you and you continue with ' + gameManager.activeCharacter.health + ' health.</p>';
             gameManager.activeRune.status = 'passive';
@@ -69,8 +69,8 @@ function enemyAttack() {
         }
 
         if (gameManager.activeCharacter.skills.skill2.name==='Mithril shirt') {
-            if (gameManager.getRandomNumber(1, 10) <= 5) {
-                gameManager.activeCharacter.health = 700;
+            if (gameManager.getRandomNumber(1, 100) <= gameManager.activeCharacter.skills.skill2.probability) {
+                gameManager.activeCharacter.health = gameManager.activeCharacter.skills.skill2.health;
                 gameManager.renderPlayerStats();
                 gameManager.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + gameManager.activeCharacter.health + ' health.</p>';
                 return;
@@ -78,15 +78,15 @@ function enemyAttack() {
         }
         if (gameManager.activeCharacter.skills.skill2.name==='Deal with the Dead') {
             if (gameManager.activeEnemy.name==='King of the Dead') {
-                if (gameManager.getRandomNumber(1, 10) <= 6) {
-                    gameManager.activeCharacter.health = 850;
+                if (gameManager.getRandomNumber(1, 100) <= gameManager.activeCharacter.skills.skill2.probability2) {
+                    gameManager.activeCharacter.health = gameManager.activeCharacter.skills.skill2.health;
                     gameManager.renderPlayerStats();
                     gameManager.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + gameManager.activeCharacter.health + ' health.</p>';
                     return;
                 }
             } else {
-                if (gameManager.getRandomNumber(1, 10) <= 5) {
-                    gameManager.activeCharacter.health = 850;
+                if (gameManager.getRandomNumber(1, 100) <= gameManager.activeCharacter.skills.skill2.probability1) {
+                    gameManager.activeCharacter.health = gameManager.activeCharacter.skills.skill2.health;
                     gameManager.renderPlayerStats();
                     gameManager.opponentInfoAttack.innerHTML = '<p>You ressurected and continue with ' + gameManager.activeCharacter.health + ' health.</p>';
                     return;
