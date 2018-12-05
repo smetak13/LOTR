@@ -35,11 +35,11 @@ function playAudio() {
     if (audioStatus === undefined) {
         activeAudio.pause();
         audioStatus = 'playing';
-        audioIcon.src = 'muteAudioIcon.svg';
+        audioIcon.src = 'img/muteAudioIcon.svg';
 
     } else {
         activeAudio.play();
         audioStatus = undefined;
-        audioIcon.src = "audioIcon.svg"
+        audioIcon.src = "img/audioIcon.svg"
     }
 }
