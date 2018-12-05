@@ -1,67 +1,53 @@
 
 const gameManager = {
 
-    activeCharacter: '',
-    activeEnemy: '',
-    activeRune: '',
-    player: '',
-    opponent: '',
-    playerResult: '',
-    opponentResult: '',
-    resultStats: '',
+    activeCharacter: undefined,
+    activeEnemy: undefined,
+    activeRune: undefined,
+    player: document.querySelector('.player'),
+    opponent: document.querySelector('.opponent'),
+    playerResult: document.querySelector('.player-result'),
+    opponentResult: document.querySelector('.opponent-result'),
+    resultStats: document.querySelector('.result-stats'),
     round: 0,
-    roundsCounter: '',
-    basicHealth: '',
-    basicAttack: '',
-    regenerationCount: '',
-    playerInfoSkill: '',
-    playerInfoAttack: '',
-    opponentInfoAttack: '',
-    runeInfo: '',
-    manaInfo: '',
-    manaSkillInfo: '',
-    manaButton: '',
+    roundsCounter: document.getElementById('rounds-counter'),
+    basicHealth: 0,
+    basicAttack: 0,
+    regenerationCount: 0,
+    playerInfoSkill: document.querySelector('.player-info-skill'),
+    playerInfoAttack: document.querySelector('.player-info-attack'),
+    opponentInfoAttack: document.querySelector('.opponent-info-attack'),
+    runeInfo: document.querySelector('.rune-info'),
+    manaInfo: document.querySelector('.mana-info'),
+    manaSkillInfo: document.querySelector('.mana-skill-info'),
+    manaButton: document.getElementById('mana-button'),
     activeManaSkill: {
         name: 'Mana Skill',
         description: 'You need to generate 7 mana points to get a Mana Skill.'
     },
-    menu: '',
-    rune: '',
-    difficulty:'',
-    arena: '',
-    result: '',
-    frodoStats: '',
-    samStats: '',
-    legolasStats: '',
-    aragornStats: '',
-    gimliStats: '',
-    gandalfStats: '',
-    fireRuneStats: '',
-    waterRuneStats: '',
-    earthRuneStats: '',
-    airRuneStats: '',
+    menu: document.querySelector('.menu'),
+    rune: document.querySelector('.rune'),
+    difficulty: document.querySelector('.difficulty'),
+    arena: document.querySelector('.arena'),
+    result: document.querySelector('.result'),
+    frodoStats: document.querySelector('.frodo-stats'),
+    samStats: document.querySelector('.sam-stats'),
+    legolasStats: document.querySelector('.legolas-stats'),
+    aragornStats: document.querySelector('.aragorn-stats'),
+    gimliStats: document.querySelector('.gimli-stats'),
+    gandalfStats: document.querySelector('.gandalf-stats'),
+    fireRuneStats: document.querySelector('.fire-rune-stats'),
+    waterRuneStats: document.querySelector('.water-rune-stats'),
+    earthRuneStats: document.querySelector('.earth-rune-stats'),
+    airRuneStats: document.querySelector('.air-rune-stats'),
 
 
     init() {
-        this.menu = document.querySelector('.menu');
-        this.rune = document.querySelector('.rune');
-        this.difficulty = document.querySelector('.difficulty');
-        this.arena = document.querySelector('.arena');
-        this.result = document.querySelector('.result');
+        
         this.rune.style.display = 'none';
         this.difficulty.style.display = 'none';
         this.arena.style.display = 'none';
         this.result.style.display = 'none';
-        this.frodoStats = document.querySelector('.frodo-stats');
-        this.samStats = document.querySelector('.sam-stats');
-        this.legolasStats = document.querySelector('.legolas-stats');
-        this.aragornStats = document.querySelector('.aragorn-stats');
-        this.gimliStats = document.querySelector('.gimli-stats');
-        this.gandalfStats = document.querySelector('.gandalf-stats');
-        this.fireRuneStats = document.querySelector('.fire-rune-stats');
-        this.waterRuneStats = document.querySelector('.water-rune-stats');
-        this.earthRuneStats = document.querySelector('.earth-rune-stats');
-        this.airRuneStats = document.querySelector('.air-rune-stats');
 
         this.fireRuneStats.innerHTML = '<ul><li>' + fire.description + '</li></ul>'
         this.waterRuneStats.innerHTML = '<ul><li>' + water.description + '</li></ul>'
@@ -75,19 +61,6 @@ const gameManager = {
         this.gimliStats.innerHTML = '<ul><li><b>Attack:</b> ' + gimli.attack + '</li><li><b>Health:</b> ' + gimli.health + '</li><li><b>Agility:</b> ' + gimli.agility + '</li><li> <b>' + gimli.skills.skill1.name + ':</b> ' + gimli.skills.skill1.description + '</li><li> <b>' + gimli.skills.skill2.name + ':</b> ' + gimli.skills.skill2.description + '</li></ul>';
         this.gandalfStats.innerHTML = '<ul><li><b>Attack:</b> ' + gandalf.attack + '</li><li><b>Health:</b> ' + gandalf.health + '</li><li><b>Agility:</b> ' + gandalf.agility + '</li><li> <b>' + gandalf.skills.skill1.name + ':</b> ' + gandalf.skills.skill1.description + '</li><li> <b>' + gandalf.skills.skill2.name + ':</b> ' + gandalf.skills.skill2.description + '</li></ul>';
         
-        this.player = document.querySelector('.player');
-        this.opponent = document.querySelector('.opponent');
-        this.playerResult = document.querySelector('.player-result');
-        this.opponentResult = document.querySelector('.opponent-result');
-        this.resultStats = document.querySelector('.result-stats');
-        this.playerInfoSkill = document.querySelector('.player-info-skill');
-        this.playerInfoAttack = document.querySelector('.player-info-attack');
-        this.opponentInfoAttack = document.querySelector('.opponent-info-attack');
-        this.runeInfo = document.querySelector('.rune-info');
-        this.manaInfo = document.querySelector('.mana-info');
-        this.manaSkillInfo = document.querySelector('.mana-skill-info');
-        this.manaButton = document.getElementById('mana-button');
-        this.roundsCounter = document.getElementById('rounds-counter');
         this.roundsCounter.innerHTML = '<h5>Round: 1<h5>';
     },
 
