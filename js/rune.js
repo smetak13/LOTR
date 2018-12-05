@@ -1,5 +1,5 @@
 class Rune {
-    constructor(name, description, status = 'active', stats) {
+    constructor(name, description, status, stats) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -7,19 +7,19 @@ class Rune {
     }
 }
 
-const fire = new Rune('Fire', 'Deals 80 damage for each commenced round.',
+const fire = new Rune('Fire', 'Deals 80 damage for each commenced round.', 'active',
     {
         damage: 80,
     });
-const water = new Rune('Water', 'Takes 40 health from your opponent for each round and adds it to your health.',
+const water = new Rune('Water', 'Takes 40 health from your opponent for each round and adds it to your health.', 'active',
     {
         damage: 40,
     });
-const air = new Rune('Air', 'Regenerates 80 health for each commenced round.',
+const air = new Rune('Air', 'Regenerates 80 health for each commenced round.', 'active',
     {
         health: 80,
     });
-const earth = new Rune('Earth', 'After the character dies, he is ressurected and continues with 450 health.',
+const earth = new Rune('Earth', 'After the character dies, he is ressurected and continues with 450 health.', 'active',
     {
         health: 450,
     });
