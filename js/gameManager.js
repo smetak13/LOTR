@@ -79,7 +79,7 @@ const gameManager = {
     chooseRune(rune) {
         this.activeRune = rune;
         if (this.activeRune.name === 'Earth') {
-            this.runeInfo.innerHTML = '<div class="passive-rune"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '.png" width="100"><p>Rune is active</p></div>';
+            this.runeInfo.innerHTML = '<div class="float-left passive-rune"><h5>' + this.activeRune.name + '</h5><img src="img/' + this.activeRune.name.toLowerCase() + '.png" width="100"><p>Rune is active</p></div>';
             return this.selectContent(this.difficulty);
         }
         this.renderRuneStats();
