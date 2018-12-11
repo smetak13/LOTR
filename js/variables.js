@@ -1,8 +1,4 @@
 
-document.addEventListener('DOMContentLoaded', gameManager.init());
-window.addEventListener('load', playAudio);
-
-
 const soundtrack = [
 
     new Audio('js/audio/01.mp3'),
@@ -43,3 +39,6 @@ function playAudio() {
         audioIcon.src = "img/audioIcon.svg"
     }
 }
+
+document.addEventListener('DOMContentLoaded', gameManager.init());
+window.addEventListener('load', playAudio);
