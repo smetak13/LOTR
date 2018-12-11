@@ -136,6 +136,3 @@ const gameManager = {
     }
 
 }
-
-
-document.addEventListener('DOMContentLoaded', gameManager.init());
